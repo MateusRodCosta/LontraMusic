@@ -1,17 +1,19 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.android.application)
     alias(libs.plugins.compose.compiler)
-    kotlin("plugin.serialization") version "2.0.0"
-    id("com.ncorti.ktfmt.gradle") version "0.23.0"
-    id("com.jaredsburrows.license") version "0.9.8"
+    alias(libs.plugins.kotlin.serialization)
+    id("com.ncorti.ktfmt.gradle") version "0.26.0"
 }
 
 android {
     namespace = "org.sunsetware.phocid"
-    compileSdk = 36
+    compileSdk {
+        version = release(36) {
+            minorApiLevel = 1
+        }
+    }
 
     defaultConfig {
         applicationId = "org.sunsetware.phocid"
@@ -23,6 +25,14 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        getByName("debug") {
+            // Disable v2 signing and force enable v3 signing for modern Android (9+)
+            enableV2Signing = false
+            enableV3Signing = true
+        }
+    }
+
     buildTypes {
         debug { isPseudoLocalesEnabled = true }
         release {
@@ -32,11 +42,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
-            signingConfig = signingConfigs.getByName("debug").apply {
-                // Disable v2 signing and force enable v3 signing for modern Android (9+)
-                enableV2Signing = false
-                enableV3Signing = true
-            }
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -110,36 +116,4 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 }
 
-tasks.register("customSetup") { dependsOn("licenseReleaseReport") }
-
-tasks.preBuild { dependsOn("customSetup") }
-
-tasks.assembleUnitTest { dependsOn("customSetup") }
-
-composeCompiler {
-    stabilityConfigurationFiles =
-        listOf(rootProject.layout.projectDirectory.file("stability_config.conf"))
-}
-
 ktfmt { kotlinLangStyle() }
-
-licenseReport {
-    // Generate reports
-    generateCsvReport = false
-    generateHtmlReport = false
-    generateJsonReport = true
-    generateTextReport = false
-
-    // Copy reports - These options are ignored for Java projects
-    copyCsvReportToAssets = false
-    copyHtmlReportToAssets = false
-    copyJsonReportToAssets = true
-    copyTextReportToAssets = false
-    useVariantSpecificAssetDirs = false
-
-    // Ignore licenses for certain artifact patterns
-    ignoredPatterns = setOf()
-
-    // Show versions in the report - default is false
-    showVersions = true
-}
