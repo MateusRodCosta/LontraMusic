@@ -1,0 +1,14 @@
+{
+  "uniqueId": "OpusMetadataIo",
+  "developers": [
+    {
+      "name": "tjysunset <tjysunset@outlook.com>",
+      "organisationUrl": "https://sunsetware.org/"
+    }
+  ],
+  "name": "OpusMetadataIo",
+  "website": "https://github.com/TJYSunset/OpusMetadataIo",
+  "licenses": [
+    "Apache-2.0"
+  ]
+}

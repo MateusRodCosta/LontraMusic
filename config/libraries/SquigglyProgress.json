@@ -1,0 +1,14 @@
+{
+  "uniqueId": "SquigglyProgress",
+  "developers": [
+    {
+      "name": "The Android Open Source Project",
+      "organisationUrl": "https://source.android.com/"
+    }
+  ],
+  "name": "SquigglyProgress.kt (modified)",
+  "website": "https://android.googlesource.com/platform/frameworks/base/+/refs/heads/android14-release/packages/SystemUI/src/com/android/systemui/media/controls/ui/SquigglyProgress.kt",
+  "licenses": [
+    "Apache-2.0"
+  ]
+}

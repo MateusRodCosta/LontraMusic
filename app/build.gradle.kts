@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.aboutlibraries.android)
     id("com.ncorti.ktfmt.gradle") version "0.26.0"
 }
 
@@ -114,6 +115,17 @@ dependencies {
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.aboutlibraries.core)
+    implementation(libs.aboutlibraries.compose.core)
+    implementation(libs.aboutlibraries.compose.m3)
 }
 
 ktfmt { kotlinLangStyle() }
+
+aboutLibraries {
+    collect {
+        // Define the path configuration files are located in. E.g. additional libraries, licenses to add to the target .json
+        configPath = file("../config")
+    }
+}
