@@ -30,21 +30,14 @@
 -keep class org.jaudiotagger.** { *; }
 -keep class org.jcodec.** { *; }
 
-# WorkManager and Room
--keep class androidx.work.impl.WorkDatabase_Impl { *; }
--keep class * extends androidx.room.RoomDatabase
--keep class androidx.work.impl.** { *; }
--keep class androidx.room.** { *; }
--keep class androidx.sqlite.** { *; }
--keep class androidx.startup.** { *; }
+# WorkManager / Room
+-keep class androidx.work.impl.WorkDatabase_Impl {
+    public <init>(...);
+}
 
 # ICU4J
 -keep class com.ibm.icu.** { *; }
-
--keepattributes *Annotation*
--keepattributes Signature
--keepattributes EnclosingMethod
--keepattributes InnerClasses
+-dontwarn com.ibm.icu.**
 
 -dontwarn java.awt.Graphics2D
 -dontwarn java.awt.Image
@@ -58,15 +51,3 @@
 -dontwarn javax.imageio.stream.ImageOutputStream
 -dontwarn javax.swing.filechooser.FileFilter
 -dontwarn sun.security.action.GetPropertyAction
-
-# Rules to suppress warnings for missing classes, as suggested by R8
--dontwarn com.sun.source.doctree.DocTree
--dontwarn com.sun.source.doctree.DocTreeVisitor
--dontwarn com.sun.source.doctree.TextTree
--dontwarn com.sun.source.doctree.UnknownBlockTagTree
--dontwarn com.sun.source.doctree.UnknownInlineTagTree
--dontwarn com.sun.source.util.SimpleDocTreeVisitor
--dontwarn javax.lang.model.element.Element
--dontwarn javax.lang.model.element.ElementKind
--dontwarn jdk.javadoc.doclet.Taglet$Location
--dontwarn jdk.javadoc.doclet.Taglet
