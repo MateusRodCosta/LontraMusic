@@ -9,6 +9,7 @@ image:metadata/en-US/images/phoneScreenshots/03-screenshot-search.png[Screenshot
 image:metadata/en-US/images/phoneScreenshots/04-screenshot-player.png[Screenshot,15%]
 
 A modern offline music player with familiar designs for Android 11+.
+Lontra Music is a fork of https://github.com/TJYSunset/Phocid[Phocid].
 
 == Features
 
@@ -47,8 +48,9 @@ This work by tjysunset is licensed under CC BY-SA 4.0. To view a copy of this li
 === Code
 
 ....
-Phocid
-Copyright (C) tjysunset <tjysunset@outlook.com>
+Lontra Music
+Copyright (C) 2026 Mateus Rodrigues Costa <mateusrodcosta@gmail.com>
+Copyright (C) 2024 - 2026 tjysunset <tjysunset@outlook.com>
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
