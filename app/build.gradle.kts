@@ -20,8 +20,8 @@ android {
         applicationId = "org.sunsetware.phocid"
         minSdk = 30
         targetSdk = 36
-        versionCode = 20251206
-        versionName = "20251206"
+        versionCode = 20260610
+        versionName = "20260610"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

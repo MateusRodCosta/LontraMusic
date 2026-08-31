@@ -76,7 +76,7 @@ I don't accept donations.
 
 === Translators
 
-* de: https://github.com/Omega-3-4-5[Omega-3-4-5]
+* de: https://github.com/Omega-3-4-5[Omega-3-4-5], https://github.com/phoenixr-codes[phoenixr-codes]
 * es: https://github.com/AlejandroMoc[AlejandroMoc]
 * fr: https://github.com/HermitCyclop[HermitCyclop]
 * pt-BR: https://github.com/MateusRodCosta[MateusRodCosta]

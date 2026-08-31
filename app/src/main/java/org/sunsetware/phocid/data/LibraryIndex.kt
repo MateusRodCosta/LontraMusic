@@ -1516,10 +1516,9 @@ private fun scanTrack(
             VORBIS_COMMENT_UNOFFICIAL_YEAR.firstNotNullOfOrNull { name ->
                 comments[name]?.firstNotNullOfOrNull { it.parseYear() }
             } ?: year
-        originalYear =
-            originalYearFieldNames.firstNotNullOfOrNull { name ->
-                comments[name]?.firstNotNullOfOrNull { it.parseYear() }
-            }
+        originalYear = originalYearFieldNames.firstNotNullOfOrNull { name ->
+            comments[name]?.firstNotNullOfOrNull { it.parseYear() }
+        }
         trackNumber =
             comments[VORBIS_COMMENT_TRACKNUMBER]?.firstNotNullOfOrNull { it.toIntOrNull() }
                 ?: trackNumber
@@ -1544,28 +1543,16 @@ private fun scanTrack(
             title = file.tag.getFirst(FieldKey.TITLE)
         } catch (_: KeyNotFoundException) {}
         try {
-            artists =
-                file.tag
-                    .getFields(FieldKey.ARTIST)
-                    .filter { !it.isBinary }
-                    .map { (it as TagTextField).content }
+            artists = file.tag.getAll(FieldKey.ARTIST)
         } catch (_: KeyNotFoundException) {}
         try {
             album = file.tag.getFirst(FieldKey.ALBUM)
         } catch (_: KeyNotFoundException) {}
         try {
-            albumArtists =
-                file.tag
-                    .getFields(FieldKey.ALBUM_ARTIST)
-                    .filter { !it.isBinary }
-                    .map { (it as TagTextField).content }
+            albumArtists = file.tag.getAll(FieldKey.ALBUM_ARTIST)
         } catch (_: KeyNotFoundException) {}
         try {
-            genres =
-                file.tag
-                    .getFields(FieldKey.GENRE)
-                    .filter { !it.isBinary }
-                    .map { (it as TagTextField).content }
+            genres = file.tag.getAll(FieldKey.GENRE)
         } catch (_: KeyNotFoundException) {}
         year =
             (try {
@@ -1729,15 +1716,14 @@ private fun splitArtists(
         return restored
     }
 
-    val featuringArtistInTitle =
-        title?.let {
-            featuringArtistInTitleRegex
-                .find(it.replaceExceptions())
-                ?.groups
-                ?.get("artist")
-                ?.value
-                ?.restoreExceptions()
-        }
+    val featuringArtistInTitle = title?.let {
+        featuringArtistInTitleRegex
+            .find(it.replaceExceptions())
+            ?.groups
+            ?.get("artist")
+            ?.value
+            ?.restoreExceptions()
+    }
     return (artists + listOfNotNull(featuringArtistInTitle))
         .flatMap { string ->
             string
