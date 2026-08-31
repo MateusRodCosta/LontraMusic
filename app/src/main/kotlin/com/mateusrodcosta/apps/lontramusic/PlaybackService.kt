@@ -9,7 +9,6 @@ import android.media.audiofx.AudioEffect
 import android.os.Bundle
 import android.os.SystemClock
 import androidx.annotation.OptIn
-import androidx.core.os.bundleOf
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
@@ -132,7 +131,7 @@ class PlaybackService : MediaLibraryService() {
                     )
                 )
                 .setBitmapLoader(CustomizedBitmapLoader(this))
-                .setSessionExtras(bundleOf(AUDIO_SESSION_ID_KEY to player.inner.audioSessionId))
+                .setSessionExtras(Bundle().apply { putInt(AUDIO_SESSION_ID_KEY, player.inner.audioSessionId) })
                 .setMediaButtonPreferences(commandButtons(player))
                 .build()
 
@@ -399,7 +398,7 @@ class PlaybackService : MediaLibraryService() {
                 session: MediaSession,
                 controller: MediaSession.ControllerInfo,
             ): ConnectionResult {
-                return ConnectionResult.AcceptedResultBuilder(session)
+                return ConnectionResult.AcceptedResultBuilder(session, controller)
                     .setAvailableSessionCommands(
                         ConnectionResult.DEFAULT_SESSION_AND_LIBRARY_COMMANDS.buildUpon()
                             .addSessionCommands(

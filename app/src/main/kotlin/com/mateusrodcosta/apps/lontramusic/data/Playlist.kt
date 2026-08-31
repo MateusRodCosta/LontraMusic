@@ -6,6 +6,7 @@ import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.material.icons.Icons
@@ -18,7 +19,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
-import androidx.core.os.bundleOf
 import com.ibm.icu.text.DateFormat
 import com.mateusrodcosta.apps.lontramusic.MainActivity
 import com.mateusrodcosta.apps.lontramusic.PLAYLISTS_FILE_NAME
@@ -636,7 +636,7 @@ fun playlistShortcut(
         .setRank(rank)
         .setIntent(
             Intent(SHORTCUT_PLAYLIST, null, context, MainActivity::class.java).apply {
-                putExtras(bundleOf(SHORTCUT_PLAYLIST_EXTRA_KEY to key.toString()))
+                putExtras(Bundle().apply { putString(SHORTCUT_PLAYLIST_EXTRA_KEY, key.toString()) })
             }
         )
         .build()

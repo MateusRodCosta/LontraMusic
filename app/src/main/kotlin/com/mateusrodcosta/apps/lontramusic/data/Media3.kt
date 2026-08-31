@@ -5,7 +5,6 @@ package com.mateusrodcosta.apps.lontramusic.data
 import android.os.Bundle
 import androidx.annotation.OptIn
 import androidx.compose.runtime.Immutable
-import androidx.core.os.bundleOf
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.PlaybackParameters
@@ -160,7 +159,12 @@ fun Track.getMediaItem(unshuffledIndex: Int?): MediaItem {
                     .setRecordingYear(year)
                     .setTrackNumber(trackNumber)
                     .setDiscNumber(discNumber)
-                    .setExtras(bundleOf(URI_KEY to uri.toString(), FILE_PATH_KEY to path))
+                    .setExtras(
+                        Bundle().apply {
+                            putString(URI_KEY, uri.toString())
+                            putString(FILE_PATH_KEY, path)
+                        }
+                    )
                     .build()
             )
             .build()
@@ -439,7 +443,7 @@ fun MediaItem.setUnshuffledIndex(unshuffledIndex: Int?): MediaItem {
             mediaMetadata
                 .buildUpon()
                 .setExtras(
-                    (mediaMetadata.extras?.clone() as Bundle? ?: bundleOf()).apply {
+                    (mediaMetadata.extras?.clone() as Bundle? ?: Bundle()).apply {
                         putInt(UNSHUFFLED_INDEX_KEY, unshuffledIndex ?: -1)
                     }
                 )

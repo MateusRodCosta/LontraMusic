@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.os.SystemClock
 import androidx.compose.runtime.Stable
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.media3.common.PlaybackParameters
 import androidx.media3.common.Player
 import androidx.media3.session.MediaController
@@ -252,20 +251,20 @@ class PlayerManager(
     fun setTimer(settings: PlayerTimerSettings) {
         mediaController.sendCustomCommand(
             SessionCommand(SET_TIMER_COMMAND, Bundle.EMPTY),
-            bundleOf(
-                Pair(
+            Bundle().apply {
+                putLong(
                     TIMER_TARGET_KEY,
                     SystemClock.elapsedRealtime() + settings.duration.inWholeMilliseconds,
-                ),
-                Pair(TIMER_FINISH_LAST_TRACK_KEY, settings.finishLastTrack),
-            ),
+                )
+                putBoolean(TIMER_FINISH_LAST_TRACK_KEY, settings.finishLastTrack)
+            },
         )
     }
 
     fun cancelTimer() {
         mediaController.sendCustomCommand(
             SessionCommand(SET_TIMER_COMMAND, Bundle.EMPTY),
-            bundleOf(Pair(TIMER_TARGET_KEY, -1)),
+            Bundle().apply { putLong(TIMER_TARGET_KEY, -1) },
         )
     }
 
