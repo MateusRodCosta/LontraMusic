@@ -43,7 +43,7 @@ interface StringSource {
 var Strings =
     object : StringSource {
         override fun get(id: Int): String {
-            Log.e("Phocid", "Accessing string resource $id before initialization")
+            Log.e("LontraMusic", "Accessing string resource $id before initialization")
             return "<error>"
         }
     }

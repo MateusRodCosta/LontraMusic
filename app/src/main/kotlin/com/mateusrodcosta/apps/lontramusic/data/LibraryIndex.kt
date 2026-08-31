@@ -324,7 +324,7 @@ fun loadLyrics(track: Track, charsetName: String?): Lyrics? {
             ?.readBytes()
             ?.let { parseLrc(it, charsetName) }
     } catch (ex: Exception) {
-        Log.e("Phocid", "Can't load lyrics for ${track.path}", ex)
+        Log.e("LontraMusic", "Can't load lyrics for ${track.path}", ex)
         return null
     }
 }
@@ -513,7 +513,7 @@ fun AlbumKey(string: String): AlbumKey? {
             segments.drop(1).map { Base64.decode(it).toString(Charsets.UTF_8) },
         )
     } catch (ex: Exception) {
-        Log.e("Phocid", "Attempted to decode an invalid AlbumKey $string", ex)
+        Log.e("LontraMusic", "Attempted to decode an invalid AlbumKey $string", ex)
         return null
     }
 }
@@ -1408,7 +1408,7 @@ suspend fun scanTracks(
                 .toInt()
                 .coerceInOrMin(1, min(processorCount, 4))
     Log.d(
-        "Phocid",
+        "LontraMusic",
         "Scanning tracks with parallelism of $parallelism (max file size $maxSize, free memory $freeMemory, processor count $processorCount)",
     )
     val progressCurrent = AtomicInteger(0)
@@ -1435,7 +1435,7 @@ suspend fun scanTracks(
                                     crudeTrack,
                                 )
                         } catch (ex: Exception) {
-                            Log.e("Phocid", "Error scanning track ${crudeTrack.path}", ex)
+                            Log.e("LontraMusic", "Error scanning track ${crudeTrack.path}", ex)
                         }
                     }
                 }
@@ -1639,7 +1639,7 @@ private fun scanTrack(
                 extractWithJaudiotagger()
             }
         } catch (ex: Exception) {
-            Log.e("Phocid", "Error reading extended metadata for $path", ex)
+            Log.e("LontraMusic", "Error reading extended metadata for $path", ex)
         }
     }
 

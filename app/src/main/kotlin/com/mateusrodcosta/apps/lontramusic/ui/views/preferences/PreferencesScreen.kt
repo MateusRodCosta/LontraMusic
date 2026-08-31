@@ -979,7 +979,7 @@ private val Miscellaneous =
                             }
                             uiManager.toast(Strings[R.string.toast_preferences_import_success])
                         } catch (ex: Exception) {
-                            Log.e("Phocid", "Error importing preferences", ex)
+                            Log.e("LontraMusic", "Error importing preferences", ex)
                             uiManager.toast(
                                 Strings[R.string.toast_preferences_import_failed].icuFormat(
                                     ex.toString()
@@ -998,7 +998,7 @@ private val Miscellaneous =
                         SimpleDateFormat.getInstanceForSkeleton("yyyy-MM-dd", Locale.ROOT)
                             .format(LocalDateTime.now())
                     uiManager.intentLauncher.get()?.createJsonDocument(
-                        "phocid-preferences-$date.json"
+                        "lontramusic-preferences-$date.json"
                     ) { uri ->
                         if (uri == null) return@createJsonDocument
                         try {
@@ -1009,7 +1009,7 @@ private val Miscellaneous =
                             }
                             uiManager.toast(Strings[R.string.toast_preferences_export_success])
                         } catch (ex: Exception) {
-                            Log.e("Phocid", "Error exporting preferences", ex)
+                            Log.e("LontraMusic", "Error exporting preferences", ex)
                             uiManager.toast(
                                 Strings[R.string.toast_preferences_export_failed].icuFormat(
                                     ex.toString()
@@ -1086,7 +1086,7 @@ private fun PreferencesScreenContext.dumpLogcat() {
                     uiManager.toast(Strings[R.string.toast_dump_logcat_success])
                 }
             } catch (ex: Exception) {
-                Log.e("Phocid", "Can't dump logcat", ex)
+                Log.e("LontraMusic", "Can't dump logcat", ex)
                 uiManager.toast(Strings[R.string.toast_dump_logcat_failed].icuFormat(ex.toString()))
             }
         }

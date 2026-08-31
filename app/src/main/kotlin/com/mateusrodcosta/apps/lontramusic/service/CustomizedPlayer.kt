@@ -85,7 +85,7 @@ class CustomizedPlayer(val inner: ExoPlayer) : ForwardingPlayer(inner) {
         val itemCount = mediaItemCount
         val unshuffledIndex = currentMediaItem!!.getUnshuffledIndex()
         if (unshuffledIndex == null) {
-            Log.e("Phocid", "Current track has no unshuffled index when disabling shuffle")
+            Log.e("LontraMusic", "Current track has no unshuffled index when disabling shuffle")
             replaceMediaItems(
                 0,
                 itemCount,

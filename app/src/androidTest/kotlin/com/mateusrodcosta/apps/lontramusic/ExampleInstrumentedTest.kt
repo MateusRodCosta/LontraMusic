@@ -17,6 +17,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("org.sunsetware.phocid", appContext.packageName)
+        assertEquals("com.mateusrodcosta.apps.lontramusic", appContext.packageName)
     }
 }

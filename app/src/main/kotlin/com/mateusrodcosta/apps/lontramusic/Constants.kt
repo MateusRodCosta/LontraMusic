@@ -32,9 +32,9 @@ const val AUDIO_SESSION_ID_KEY = "audioSessionId"
 
 const val ROOT_MEDIA_ID = "root"
 
-const val SHORTCUT_CONTINUE = "org.sunsetware.phocid.CONTINUE"
-const val SHORTCUT_SHUFFLE = "org.sunsetware.phocid.SHUFFLE"
-const val SHORTCUT_PLAYLIST = "org.sunsetware.phocid.PLAYLIST"
+const val SHORTCUT_CONTINUE = "com.mateusrodcosta.apps.lontramusic.CONTINUE"
+const val SHORTCUT_SHUFFLE = "com.mateusrodcosta.apps.lontramusic.SHUFFLE"
+const val SHORTCUT_PLAYLIST = "com.mateusrodcosta.apps.lontramusic.PLAYLIST"
 const val SHORTCUT_PLAYLIST_EXTRA_KEY = "playlist"
 
 const val UNKNOWN = "<unknown>"

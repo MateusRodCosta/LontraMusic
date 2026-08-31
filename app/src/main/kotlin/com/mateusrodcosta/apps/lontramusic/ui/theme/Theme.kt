@@ -39,7 +39,7 @@ val LocalThemeAccent = compositionLocalOf { primary400 }
 val LocalDarkTheme = compositionLocalOf { false }
 
 @Composable
-fun PhocidTheme(
+fun LontraMusicTheme(
     themeColorSource: ThemeColorSource,
     customThemeColor: CustomThemeColor,
     overrideThemeColor: Color?,

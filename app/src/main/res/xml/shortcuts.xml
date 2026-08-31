@@ -7,9 +7,9 @@
         android:shortcutLongLabel="@string/shortcut_continue_long_label"
         android:shortcutShortLabel="@string/shortcut_continue_short_label">
         <intent
-            android:action="org.sunsetware.phocid.CONTINUE"
+            android:action="com.mateusrodcosta.apps.lontramusic.CONTINUE"
             android:targetClass="com.mateusrodcosta.apps.lontramusic.MainActivity"
-            android:targetPackage="org.sunsetware.phocid" />
+            android:targetPackage="com.mateusrodcosta.apps.lontramusic" />
     </shortcut>
     <shortcut
         android:enabled="true"
@@ -18,8 +18,8 @@
         android:shortcutLongLabel="@string/shortcut_shuffle_long_label"
         android:shortcutShortLabel="@string/shortcut_shuffle_short_label">
         <intent
-            android:action="org.sunsetware.phocid.SHUFFLE"
+            android:action="com.mateusrodcosta.apps.lontramusic.SHUFFLE"
             android:targetClass="com.mateusrodcosta.apps.lontramusic.MainActivity"
-            android:targetPackage="org.sunsetware.phocid" />
+            android:targetPackage="com.mateusrodcosta.apps.lontramusic" />
     </shortcut>
 </shortcuts>

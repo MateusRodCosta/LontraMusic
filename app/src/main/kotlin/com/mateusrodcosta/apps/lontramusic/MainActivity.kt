@@ -52,7 +52,7 @@ import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.globals.SystemLocale
 import com.mateusrodcosta.apps.lontramusic.ui.components.AnimatedForwardBackwardTransition
 import com.mateusrodcosta.apps.lontramusic.ui.components.DragLock
-import com.mateusrodcosta.apps.lontramusic.ui.theme.PhocidTheme
+import com.mateusrodcosta.apps.lontramusic.ui.theme.LontraMusicTheme
 import com.mateusrodcosta.apps.lontramusic.ui.views.PermissionRequestDialog
 import com.mateusrodcosta.apps.lontramusic.ui.views.library.LibraryScreen
 import com.mateusrodcosta.apps.lontramusic.ui.views.library.LibraryScreenTabType
@@ -187,7 +187,7 @@ class MainActivity : ComponentActivity(), IntentLauncher {
 
                 BackHandler(backHandlerEnabled) { uiManager.back() }
 
-                PhocidTheme(
+                LontraMusicTheme(
                     themeColorSource = preferences.themeColorSource,
                     customThemeColor = preferences.customThemeColor,
                     overrideThemeColor =
@@ -373,7 +373,7 @@ class MainActivity : ComponentActivity(), IntentLauncher {
                 }
             }
             ACTION_VIEW -> {
-                Log.d("Phocid", "View intent: ${intent.data}")
+                Log.d("LontraMusic", "View intent: ${intent.data}")
 
                 if (intent.data == null) {
                     uiManager.toast(Strings[R.string.toast_view_intent_not_found])

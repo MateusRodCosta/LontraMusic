@@ -61,12 +61,13 @@ import com.mateusrodcosta.apps.lontramusic.ui.components.SelectBox
 import com.mateusrodcosta.apps.lontramusic.ui.components.UtilityListHeader
 import com.mateusrodcosta.apps.lontramusic.ui.components.UtilityListItem
 import com.mateusrodcosta.apps.lontramusic.ui.components.UtilitySwitchListItem
-import com.mateusrodcosta.apps.lontramusic.ui.theme.PhocidTheme
+import com.mateusrodcosta.apps.lontramusic.ui.theme.LontraMusicTheme
 import com.mateusrodcosta.apps.lontramusic.ui.theme.Typography
 import com.mateusrodcosta.apps.lontramusic.utils.roundToIntOrZero
 import java.util.Locale
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.runBlocking
+import androidx.compose.ui.platform.LocalLocale
 
 class WidgetConfigureActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -91,7 +92,7 @@ class WidgetConfigureActivity : ComponentActivity() {
                 mutableIntStateOf(preferences.widgetArtworkResolutionLimit)
             }
 
-            PhocidTheme(
+            LontraMusicTheme(
                 themeColorSource = preferences.themeColorSource,
                 customThemeColor = preferences.customThemeColor,
                 overrideThemeColor = null,
@@ -176,7 +177,7 @@ class WidgetConfigureActivity : ComponentActivity() {
                                     Strings[R.string.preferences_widget_artwork_resolution_limit]
                                 )
                                 Text(
-                                    NumberFormatter.withLocale(Locale.getDefault())
+                                    NumberFormatter.withLocale(LocalLocale.current.platformLocale)
                                         .notation(Notation.simple())
                                         .precision(Precision.integer())
                                         .unit(MeasureUnit.PIXEL)

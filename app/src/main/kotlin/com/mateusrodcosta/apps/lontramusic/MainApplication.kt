@@ -107,7 +107,7 @@ class MainApplication : Application() {
     }
 
     private fun onUncaughtException(@Suppress("unused") thread: Thread, ex: Throwable) {
-        Log.e("Phocid", "Uncaught exception", ex)
+        Log.e("LontraMusic", "Uncaught exception", ex)
         val file = File(getExternalFilesDir(null), "crash.txt")
 
         file.bufferedWriter().use { writer ->

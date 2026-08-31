@@ -84,7 +84,7 @@ fun listSafFiles(
                 }
         }
     } catch (ex: Exception) {
-        Log.e("Phocid", "Error listing files for $uri", ex)
+        Log.e("LontraMusic", "Error listing files for $uri", ex)
         return null
     }
 

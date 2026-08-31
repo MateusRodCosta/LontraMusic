@@ -183,10 +183,10 @@ class PlaylistManager(
                                 )
                             }
                         if (!ShortcutManagerCompat.addDynamicShortcuts(context, shortcuts)) {
-                            Log.e("Phocid", "Shortcut update is rate limited")
+                            Log.e("LontraMusic", "Shortcut update is rate limited")
                         }
                     }
-                    .catch { Log.e("Phocid", "Error updating playlist shortcuts", it) }
+                    .catch { Log.e("LontraMusic", "Error updating playlist shortcuts", it) }
                     .collect()
             }
     }
@@ -408,7 +408,7 @@ class PlaylistManager(
         _syncLog.update { syncLog.toString() }
 
         if (error) {
-            Log.e("PhocidPlaylistSync", syncLog.toString())
+            Log.e("LontraMusicPlaylistSync", syncLog.toString())
             ContextCompat.getMainExecutor(context).execute {
                 Toast.makeText(
                         context,

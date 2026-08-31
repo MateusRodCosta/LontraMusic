@@ -25,14 +25,13 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Phocid"
+        android:theme="@style/Theme.LontraMusic"
         tools:targetApi="36">
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:launchMode="singleInstance"
-            android:theme="@style/Theme.Phocid">
+            android:theme="@style/Theme.LontraMusic">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.MUSIC_PLAYER" />
@@ -42,8 +41,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <action android:name="org.sunsetware.phocid.CONTINUE" />
-                <action android:name="org.sunsetware.phocid.SHUFFLE" />
+                <action android:name="com.mateusrodcosta.apps.lontramusic.CONTINUE" />
+                <action android:name="com.mateusrodcosta.apps.lontramusic.SHUFFLE" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -67,7 +66,7 @@
         <activity
             android:name=".WidgetConfigureActivity"
             android:exported="true"
-            android:theme="@style/Theme.Phocid">
+            android:theme="@style/Theme.LontraMusic">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>

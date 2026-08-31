@@ -218,7 +218,7 @@ private fun decodeBitmap(source: ImageDecoder.Source, sizeLimit: Int?, crop: Boo
             }
         }
     } catch (ex: Exception) {
-        Log.e("Phocid", "Can't decode bitmap", ex)
+        Log.e("LontraMusic", "Can't decode bitmap", ex)
         null
     }
 }

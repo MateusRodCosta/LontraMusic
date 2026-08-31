@@ -285,7 +285,7 @@ private constructor(tabType: PlaylistIoScreenTabType, initialExportSelection: Se
                                             )
                                         } catch (ex: Exception) {
                                             Log.e(
-                                                "Phocid",
+                                                "LontraMusic",
                                                 "Error releasing persistable uri permission",
                                                 ex,
                                             )
@@ -299,7 +299,7 @@ private constructor(tabType: PlaylistIoScreenTabType, initialExportSelection: Se
                                             )
                                         } catch (ex: Exception) {
                                             Log.e(
-                                                "Phocid",
+                                                "LontraMusic",
                                                 "Error taking persistable uri permission",
                                                 ex,
                                             )
@@ -322,7 +322,7 @@ private constructor(tabType: PlaylistIoScreenTabType, initialExportSelection: Se
                                         )
                                     } catch (ex: Exception) {
                                         Log.e(
-                                            "Phocid",
+                                            "LontraMusic",
                                             "Error releasing persistable uri permission",
                                             ex,
                                         )
@@ -547,7 +547,7 @@ private constructor(tabType: PlaylistIoScreenTabType, initialExportSelection: Se
                     try {
                         DocumentFile.fromTreeUri(context, Uri.parse(it))!!.name
                     } catch (ex: Exception) {
-                        Log.e("Phocid", "Error getting directory name of $it", ex)
+                        Log.e("LontraMusic", "Error getting directory name of $it", ex)
                         null
                     }
                 }

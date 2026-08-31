@@ -94,7 +94,7 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
         return viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 if (scanMutex.tryLock()) {
-                    Log.d("Phocid", "Library scan started")
+                    Log.d("LontraMusic", "Library scan started")
                     try {
                         _libraryScanProgress.update { null }
                         _libraryScanState.update { force }
@@ -146,9 +146,9 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
                             ) {
                                 delay(1)
                             }
-                            Log.d("Phocid", "Library scan completed")
+                            Log.d("LontraMusic", "Library scan completed")
                         } else {
-                            Log.d("Phocid", "Library scan aborted: permission denied")
+                            Log.d("LontraMusic", "Library scan aborted: permission denied")
                         }
                         playlistManager.syncPlaylists()
                     } finally {

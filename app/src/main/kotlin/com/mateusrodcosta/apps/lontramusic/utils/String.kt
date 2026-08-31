@@ -27,7 +27,7 @@ fun String.icuFormat(vararg args: Any?): String {
     return try {
         MessageFormat.format(this, *args)
     } catch (ex: Exception) {
-        Log.e("Phocid", "Can't format string \"$this\" with (${args.joinToString(", ")})", ex)
+        Log.e("LontraMusic", "Can't format string \"$this\" with (${args.joinToString(", ")})", ex)
         this
     }
 }
