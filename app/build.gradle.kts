@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -5,13 +6,13 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.aboutlibraries.android)
-    id("com.ncorti.ktfmt.gradle") version "0.26.0"
+    id("com.ncorti.ktfmt.gradle") version "0.27.0"
 }
 
 android {
     namespace = "org.sunsetware.phocid"
     compileSdk {
-        version = release(36) {
+        version = release(37) {
             minorApiLevel = 1
         }
     }
@@ -19,6 +20,7 @@ android {
     defaultConfig {
         applicationId = "org.sunsetware.phocid"
         minSdk = 30
+        //noinspection OldTargetApi
         targetSdk = 36
         versionCode = 20260610
         versionName = "20260610"
@@ -28,24 +30,26 @@ android {
 
     signingConfigs {
         getByName("debug") {
-            // Disable v2 signing and force enable v3 signing for modern Android (9+)
+            // Enable v3 signing only
+            enableV1Signing = false
             enableV2Signing = false
             enableV3Signing = true
         }
     }
 
     buildTypes {
-        debug { isPseudoLocalesEnabled = true }
+        debug {
+            isPseudoLocalesEnabled = true
+        }
         release {
-            isShrinkResources = true
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
-            )
+            optimization {
+                enable = true
+            }
+
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
@@ -54,20 +58,27 @@ android {
         compose = true
         buildConfig = true
     }
-    packaging.resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
     dependenciesInfo {
         // Disables dependency metadata when building APKs.
         includeInApk = false
         // Disables dependency metadata when building Android App Bundles.
         includeInBundle = false
     }
-    @Suppress("UnstableApiUsage")
-    androidResources.generateLocaleConfig = true
+    androidResources{
+        @Suppress("UnstableApiUsage")
+        generateLocaleConfig = true
+    }
 }
 
 kotlin {
     jvmToolchain(21)
     compilerOptions {
+        languageVersion = KotlinVersion.KOTLIN_2_4
         jvmTarget = JvmTarget.JVM_21
     }
 }
