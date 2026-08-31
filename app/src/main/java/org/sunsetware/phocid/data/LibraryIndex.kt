@@ -498,6 +498,11 @@ data class AlbumKey(
         name: String,
         albumArtists: List<String>,
     ) : this(CaseInsensitiveString(name), albumArtists.map { CaseInsensitiveString(it) })
+
+    constructor(
+        name: String,
+        albumArtist: String?,
+    ) : this(name, albumArtist?.let { listOf(it) } ?: emptyList())
 }
 
 fun AlbumKey(string: String): AlbumKey? {
