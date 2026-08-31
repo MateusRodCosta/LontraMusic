@@ -19,7 +19,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "org.sunsetware.phocid"
+        applicationId = "com.mateusrodcosta.apps.lontramusic"
         minSdk = 30
         //noinspection OldTargetApi
         targetSdk = 36
