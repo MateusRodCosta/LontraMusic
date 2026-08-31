@@ -112,8 +112,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.jaudiotagger)
     implementation(libs.reorderable)
-    //noinspection UseTomlInstead
-    implementation("org.sunsetware.omio:omio")
+    implementation(project(":OpusMetadataIo"))
 
     testImplementation(libs.junit)
     testImplementation(libs.robolectric)

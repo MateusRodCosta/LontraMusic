@@ -24,4 +24,6 @@ rootProject.name = "Phocid"
 
 include(":app")
 
-includeBuild("deps/OpusMetadataIo")
+include(":OpusMetadataIo")
+project(":OpusMetadataIo").projectDir = file("deps/OpusMetadataIo")
+project(":OpusMetadataIo").buildFileName = "../../OpusMetadataIo.gradle.kts"

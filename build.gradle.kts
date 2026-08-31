@@ -3,4 +3,6 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.aboutlibraries.android) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
+    id("com.ncorti.ktfmt.gradle") version "0.27.0" apply false
 }
