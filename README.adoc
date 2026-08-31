@@ -1,14 +1,6 @@
-= Phocid
+= Lontra Music
 :note-caption: ℹ️
 :warning-caption: ⚠️
-
-image:metadata/en-US/images/icon.png[Icon,64px]
-image:https://img.shields.io/f-droid/v/org.sunsetware.phocid[F-Droid Version,link=https://f-droid.org/en/packages/org.sunsetware.phocid/]
-image:https://img.shields.io/badge/official-website-blue[Official website,link=https://sunsetware.org/phocid]
-image:https://img.shields.io/badge/works_on-my_machine-yellow[Works on my machine]
-image:https://img.shields.io/github/license/tjysunset/phocid[License]
-
-NOTE: https://github.com/TJYSunset/Phocid/issues/185[Phocid is currently in maintenance mode.]
 
 image:metadata/en-US/images/phoneScreenshots/00-screenshot-home-tracks.png[Screenshot,15%]
 image:metadata/en-US/images/phoneScreenshots/01-screenshot-home-albums.png[Screenshot,15%]
@@ -17,14 +9,6 @@ image:metadata/en-US/images/phoneScreenshots/03-screenshot-search.png[Screenshot
 image:metadata/en-US/images/phoneScreenshots/04-screenshot-player.png[Screenshot,15%]
 
 A modern offline music player with familiar designs for Android 11+.
-
-This project aims to be a replacement with personal tweaks for the now-defunct https://github.com/kabouzeid/Phonograph[Phonograph] music player, but has no connections with it.
-
-== Help & FAQ
-
-Please refer to https://sunsetware.org/phocid/help/[the help page on the website.]
-
-If your problem is not covered by this page, you can create an https://github.com/TJYSunset/Phocid/issues[issue] or https://github.com/TJYSunset/Phocid/discussions[discussion] depending on the severity.
 
 == Features
 
@@ -37,40 +21,9 @@ If your problem is not covered by this page, you can create an https://github.co
 * Optional less-vibrant colors
 * Brand new design based on Material Design 3
 
-== Missing features that are intentionally left out
-
-* Tag editing
-+
-The scene of audio file tagging is a disaster.
-The best metadata support library I could find is still buggy; I recommend using well-known dedicated software for this task.
-* Deleting files
-* Anything that requires an internet connection
-* Lock screen
-* Playback statistics
-
-== Reporting a crash
-
-A crash report should have been saved to `Android/data/org.sunsetware.phocid/files/crash.txt` in your external storage.
-Please https://github.com/TJYSunset/Phocid/issues[create an issue] with the report attached.
-
-NOTE: Depending on your system, you might need to connect your phone to a computer to see this file.
-
-WARNING: This file contains uncensored logs.
-Although it should not contain sensitive information, you are responsible for checking whether this holds true.
-
 == Building
 
 Remember to clone the submodule with `git clone --recurse-submodules`.
-
-== Contributing
-
-Please ask first if you want to work on big code changes.
-Instead of directly contributing code to Phocid, it would be great if you can help with big upstream issues first, like https://github.com/androidx/media/issues/81. (Please let me know if you have successfully closed those!)
-
-If you would like to help with translations, please use https://sunsetware.org/phocid/translate/[the translation editor] and follow the instructions. Alternatively, you can use your preferred translation tool, set it up for Android + https://unicode-org.github.io/icu/userguide/format_parse/messages/[ICU MessageFormat 1.0], then submit a pull request.
-Please don't submit machine translations or AI hallucinations.
-
-I don't accept donations.
 
 == Credits
 
