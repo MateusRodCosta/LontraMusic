@@ -1,12 +1,12 @@
-package org.sunsetware.phocid
+package com.mateusrodcosta.apps.lontramusic
 
 import com.ibm.icu.text.Collator
 import com.ibm.icu.text.RuleBasedCollator
+import com.mateusrodcosta.apps.lontramusic.data.Searchable
+import com.mateusrodcosta.apps.lontramusic.data.search
 import java.util.Locale
 import org.assertj.core.api.Assertions.*
 import org.junit.Test
-import org.sunsetware.phocid.data.Searchable
-import org.sunsetware.phocid.data.search
 
 class SearchableTest {
 

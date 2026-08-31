@@ -1,12 +1,12 @@
-package org.sunsetware.phocid
+package com.mateusrodcosta.apps.lontramusic
 
+import com.mateusrodcosta.apps.lontramusic.utils.AsyncCache
+import com.mateusrodcosta.apps.lontramusic.utils.Random
 import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.*
 import org.junit.Test
-import org.sunsetware.phocid.utils.AsyncCache
-import org.sunsetware.phocid.utils.Random
 
 class AsyncCacheTest {
     @Test

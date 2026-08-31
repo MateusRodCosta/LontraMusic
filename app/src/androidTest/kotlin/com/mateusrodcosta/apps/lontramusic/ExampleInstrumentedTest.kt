@@ -1,4 +1,4 @@
-package org.sunsetware.phocid
+package com.mateusrodcosta.apps.lontramusic
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry

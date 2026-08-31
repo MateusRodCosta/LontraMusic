@@ -1,11 +1,11 @@
-package org.sunsetware.phocid
+package com.mateusrodcosta.apps.lontramusic
 
 import com.ibm.icu.lang.UCharacter
+import com.mateusrodcosta.apps.lontramusic.utils.initialLetter
 import java.util.Locale
 import kotlin.streams.toList
 import org.assertj.core.api.Assertions.*
 import org.junit.Test
-import org.sunsetware.phocid.utils.initialLetter
 
 class InitialismTest {
     @Test

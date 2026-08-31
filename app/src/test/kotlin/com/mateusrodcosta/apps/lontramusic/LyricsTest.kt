@@ -1,13 +1,13 @@
-package org.sunsetware.phocid
+package com.mateusrodcosta.apps.lontramusic
 
+import com.mateusrodcosta.apps.lontramusic.data.Lyrics
+import com.mateusrodcosta.apps.lontramusic.data.parseLrc
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 import org.assertj.core.api.Assertions.*
 import org.junit.Test
-import org.sunsetware.phocid.data.Lyrics
-import org.sunsetware.phocid.data.parseLrc
 
 class LyricsTest {
     @Test

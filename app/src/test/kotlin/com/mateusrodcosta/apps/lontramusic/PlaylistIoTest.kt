@@ -1,17 +1,17 @@
-package org.sunsetware.phocid
+package com.mateusrodcosta.apps.lontramusic
 
+import com.mateusrodcosta.apps.lontramusic.data.InvalidTrack
+import com.mateusrodcosta.apps.lontramusic.data.PlaylistEntry
+import com.mateusrodcosta.apps.lontramusic.data.PlaylistIoSettings
+import com.mateusrodcosta.apps.lontramusic.data.RealizedPlaylist
+import com.mateusrodcosta.apps.lontramusic.data.RealizedPlaylistEntry
+import com.mateusrodcosta.apps.lontramusic.data.parseM3u
+import com.mateusrodcosta.apps.lontramusic.data.toM3u
 import java.util.UUID
 import org.assertj.core.api.Assertions.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import org.sunsetware.phocid.data.InvalidTrack
-import org.sunsetware.phocid.data.PlaylistEntry
-import org.sunsetware.phocid.data.PlaylistIoSettings
-import org.sunsetware.phocid.data.RealizedPlaylist
-import org.sunsetware.phocid.data.RealizedPlaylistEntry
-import org.sunsetware.phocid.data.parseM3u
-import org.sunsetware.phocid.data.toM3u
 
 @RunWith(RobolectricTestRunner::class)
 class PlaylistIoTest {

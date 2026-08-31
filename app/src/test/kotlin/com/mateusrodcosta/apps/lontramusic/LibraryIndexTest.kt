@@ -1,19 +1,19 @@
-package org.sunsetware.phocid
+package com.mateusrodcosta.apps.lontramusic
 
 import androidx.compose.ui.graphics.Color
 import com.ibm.icu.text.Collator
+import com.mateusrodcosta.apps.lontramusic.data.AlbumKey
+import com.mateusrodcosta.apps.lontramusic.data.InvalidTrack
+import com.mateusrodcosta.apps.lontramusic.data.LibraryIndex
+import com.mateusrodcosta.apps.lontramusic.data.Track
+import com.mateusrodcosta.apps.lontramusic.data.UnfilteredTrackIndex
+import com.mateusrodcosta.apps.lontramusic.data.albumKey
 import java.util.Locale
 import kotlin.time.Duration
 import org.assertj.core.api.Assertions.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import org.sunsetware.phocid.data.AlbumKey
-import org.sunsetware.phocid.data.InvalidTrack
-import org.sunsetware.phocid.data.LibraryIndex
-import org.sunsetware.phocid.data.Track
-import org.sunsetware.phocid.data.UnfilteredTrackIndex
-import org.sunsetware.phocid.data.albumKey
 
 @RunWith(RobolectricTestRunner::class)
 class LibraryIndexTest {
