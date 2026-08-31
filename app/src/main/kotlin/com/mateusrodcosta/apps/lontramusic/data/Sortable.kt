@@ -5,12 +5,12 @@ import androidx.compose.runtime.Stable
 import com.ibm.icu.text.Collator
 import com.ibm.icu.text.DateFormat
 import com.ibm.icu.util.ULocale
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.utils.initialLetter
 import com.mateusrodcosta.apps.lontramusic.utils.toLocalizedString
 import java.util.Date
 import kotlinx.serialization.Serializable
-import org.sunsetware.phocid.R
 
 /**
  * All properties should return null if and only if this type doesn't support that property. Missing

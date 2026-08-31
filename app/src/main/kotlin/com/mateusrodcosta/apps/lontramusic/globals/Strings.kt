@@ -2,9 +2,9 @@ package com.mateusrodcosta.apps.lontramusic.globals
 
 import android.util.Log
 import androidx.compose.runtime.Stable
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.utils.icuFormat
 import kotlin.time.Duration
-import org.sunsetware.phocid.R
 
 @Stable
 interface StringSource {

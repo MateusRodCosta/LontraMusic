@@ -22,6 +22,7 @@ import androidx.core.graphics.drawable.IconCompat
 import com.ibm.icu.text.DateFormat
 import com.mateusrodcosta.apps.lontramusic.MainActivity
 import com.mateusrodcosta.apps.lontramusic.PLAYLISTS_FILE_NAME
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.SHORTCUT_PLAYLIST
 import com.mateusrodcosta.apps.lontramusic.SHORTCUT_PLAYLIST_EXTRA_KEY
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
@@ -37,7 +38,6 @@ import com.mateusrodcosta.apps.lontramusic.utils.trimAndNormalize
 import java.util.Date
 import java.util.UUID
 import java.util.concurrent.atomic.AtomicBoolean
-import kotlin.collections.iterator
 import kotlin.io.path.Path
 import kotlin.io.path.invariantSeparatorsPathString
 import kotlin.io.path.relativeToOrSelf
@@ -62,7 +62,6 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Required
 import kotlinx.serialization.Serializable
 import org.apache.commons.io.FilenameUtils
-import org.sunsetware.phocid.R
 
 enum class SpecialPlaylist(
     /** Version 8 UUID. Guaranteed to not collide with [UUID.randomUUID]. */

@@ -31,11 +31,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.ui.components.SingleLineText
 import com.mateusrodcosta.apps.lontramusic.ui.theme.INACTIVE_ALPHA
 import com.mateusrodcosta.apps.lontramusic.ui.theme.emphasizedStandard
-import org.sunsetware.phocid.R
 
 @Immutable
 sealed class PlayerScreenTopBar {

@@ -70,8 +70,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.takeWhile
 import kotlinx.coroutines.launch
 import org.apache.commons.io.FilenameUtils
-import org.sunsetware.phocid.R
-import kotlin.collections.get
 
 class MainActivity : ComponentActivity(), IntentLauncher {
     private val launchIntent = AtomicReference<Intent>(null)

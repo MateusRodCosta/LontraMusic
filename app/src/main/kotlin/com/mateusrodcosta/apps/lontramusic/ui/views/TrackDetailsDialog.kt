@@ -20,13 +20,13 @@ import com.ibm.icu.text.DateFormat
 import com.ibm.icu.util.MeasureUnit
 import com.mateusrodcosta.apps.lontramusic.Dialog
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.data.Track
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.ui.components.DialogBase
 import java.util.Date
 import java.util.Locale
 import kotlin.math.max
-import org.sunsetware.phocid.R
 
 @Stable
 class TrackDetailsDialog(private val track: Track) : Dialog() {

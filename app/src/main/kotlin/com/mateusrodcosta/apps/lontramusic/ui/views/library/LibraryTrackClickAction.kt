@@ -6,13 +6,13 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.UiManager
 import com.mateusrodcosta.apps.lontramusic.data.PlayerManager
 import com.mateusrodcosta.apps.lontramusic.data.Track
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.utils.icuFormat
 import kotlinx.serialization.Serializable
-import org.sunsetware.phocid.R
 
 @Serializable
 enum class LibraryTrackClickAction(

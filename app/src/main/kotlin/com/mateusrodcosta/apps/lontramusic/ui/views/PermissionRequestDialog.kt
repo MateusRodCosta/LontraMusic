@@ -17,9 +17,9 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.mateusrodcosta.apps.lontramusic.Dialog
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.ui.components.DialogBase
-import org.sunsetware.phocid.R
 
 @Stable
 class PermissionRequestDialog(

@@ -27,9 +27,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.sunsetware.phocid.BuildConfig
-import org.sunsetware.phocid.R
-import kotlin.collections.plusAssign
 
 class MainApplication : Application() {
     private val mainScope = MainScope()

@@ -30,12 +30,12 @@ import androidx.core.view.ViewCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mateusrodcosta.apps.lontramusic.Dialog
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.data.Preferences
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.ui.components.DialogBase
 import com.mateusrodcosta.apps.lontramusic.ui.components.UtilityCheckBoxListItem
 import com.mateusrodcosta.apps.lontramusic.utils.swap
-import org.sunsetware.phocid.R
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyListState
 

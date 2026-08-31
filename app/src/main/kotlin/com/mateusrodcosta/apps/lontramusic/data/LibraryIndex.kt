@@ -20,6 +20,7 @@ import androidx.palette.graphics.Palette
 import androidx.palette.graphics.Target
 import com.ibm.icu.text.Collator
 import com.ibm.icu.util.CaseInsensitiveString
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.READ_PERMISSION
 import com.mateusrodcosta.apps.lontramusic.UNKNOWN
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
@@ -36,14 +37,11 @@ import java.io.FileInputStream
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
-import kotlin.collections.get
-import kotlin.collections.iterator
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
-import kotlin.text.get
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -70,7 +68,6 @@ import org.sunsetware.omio.VORBIS_COMMENT_UNOFFICIAL_DISCNUMBER
 import org.sunsetware.omio.VORBIS_COMMENT_UNOFFICIAL_LYRICS
 import org.sunsetware.omio.VORBIS_COMMENT_UNOFFICIAL_YEAR
 import org.sunsetware.omio.readOpusMetadata
-import org.sunsetware.phocid.R
 
 @Immutable
 @Serializable

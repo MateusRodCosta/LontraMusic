@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mateusrodcosta.apps.lontramusic.Dialog
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.data.CustomThemeColor
 import com.mateusrodcosta.apps.lontramusic.data.ThemeColorSource
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
@@ -31,7 +32,6 @@ import com.mateusrodcosta.apps.lontramusic.ui.components.UtilityListHeader
 import com.mateusrodcosta.apps.lontramusic.ui.components.UtilitySwitchListItem
 import com.mateusrodcosta.apps.lontramusic.utils.icuFormat
 import com.mateusrodcosta.apps.lontramusic.utils.roundToIntOrZero
-import org.sunsetware.phocid.R
 
 @Stable
 class PreferencesThemeColorDialog() : Dialog() {

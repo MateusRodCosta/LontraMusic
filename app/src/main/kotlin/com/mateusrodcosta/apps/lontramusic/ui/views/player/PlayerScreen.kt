@@ -55,6 +55,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.media3.common.Player
 import com.mateusrodcosta.apps.lontramusic.DEFAULT_SWIPE_THRESHOLD
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.UiManager
 import com.mateusrodcosta.apps.lontramusic.data.InvalidTrack
 import com.mateusrodcosta.apps.lontramusic.data.LibraryIndex
@@ -82,13 +83,11 @@ import com.mateusrodcosta.apps.lontramusic.utils.combine
 import com.mateusrodcosta.apps.lontramusic.utils.map
 import com.mateusrodcosta.apps.lontramusic.utils.wrap
 import java.util.concurrent.atomic.AtomicBoolean
-import kotlin.collections.plus
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
-import org.sunsetware.phocid.R
 
 @Composable
 fun PlayerScreen(dragLock: DragLock, viewModel: MainViewModel = viewModel()) {

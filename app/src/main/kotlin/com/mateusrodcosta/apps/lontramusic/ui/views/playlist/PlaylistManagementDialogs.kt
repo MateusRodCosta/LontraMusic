@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mateusrodcosta.apps.lontramusic.Dialog
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.UNKNOWN
 import com.mateusrodcosta.apps.lontramusic.data.Playlist
 import com.mateusrodcosta.apps.lontramusic.data.RealizedPlaylist
@@ -33,7 +34,6 @@ import com.mateusrodcosta.apps.lontramusic.ui.components.UtilityCheckBoxListItem
 import com.mateusrodcosta.apps.lontramusic.ui.theme.INACTIVE_ALPHA
 import com.mateusrodcosta.apps.lontramusic.utils.icuFormat
 import java.util.UUID
-import org.sunsetware.phocid.R
 
 @Stable
 class NewPlaylistDialog(private val tracks: List<Track> = emptyList()) : Dialog() {

@@ -1,6 +1,5 @@
 package com.mateusrodcosta.apps.lontramusic
 
-import android.R
 import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Context
@@ -78,7 +77,6 @@ import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlin.collections.get
 
 class MainAppWidgetReceiver : GlanceAppWidgetReceiver() {
     override val glanceAppWidget = MainAppWidget()
@@ -166,7 +164,7 @@ class MainAppWidget : GlanceAppWidget() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     Dp(
                         resources.getDimension(
-                            R.dimen.system_app_widget_background_radius
+                            android.R.dimen.system_app_widget_background_radius
                         ) / resources.displayMetrics.density
                     )
                 } else {
@@ -339,7 +337,7 @@ class MainAppWidget : GlanceAppWidget() {
     ) {
         Column(modifier) {
             Text(
-                currentTrack?.displayTitle ?: Strings[org.sunsetware.phocid.R.string.app_name],
+                currentTrack?.displayTitle ?: Strings[R.string.app_name],
                 style =
                     Typography.bodyLarge
                         .toGlanceStyle()
@@ -374,8 +372,8 @@ class MainAppWidget : GlanceAppWidget() {
         @Composable
         fun Previous() {
             IconButton(
-                org.sunsetware.phocid.R.drawable.player_previous,
-                Strings[org.sunsetware.phocid.R.string.player_previous],
+                R.drawable.player_previous,
+                Strings[R.string.player_previous],
                 contentColor,
                 GlanceModifier.clickable {
                     withController(context) {
@@ -388,8 +386,8 @@ class MainAppWidget : GlanceAppWidget() {
         @Composable
         fun Next() {
             IconButton(
-                org.sunsetware.phocid.R.drawable.player_next,
-                Strings[org.sunsetware.phocid.R.string.player_next],
+                R.drawable.player_next,
+                Strings[R.string.player_next],
                 contentColor,
                 GlanceModifier.clickable {
                     withController(context) {
@@ -408,8 +406,8 @@ class MainAppWidget : GlanceAppWidget() {
                 Box(modifier = GlanceModifier.defaultWeight()) {}
             }
             IconButton(
-                if (isPlaying) org.sunsetware.phocid.R.drawable.player_pause else org.sunsetware.phocid.R.drawable.player_play,
-                if (isPlaying) Strings[org.sunsetware.phocid.R.string.player_pause] else Strings[org.sunsetware.phocid.R.string.player_play],
+                if (isPlaying) R.drawable.player_pause else R.drawable.player_play,
+                if (isPlaying) Strings[R.string.player_pause] else Strings[R.string.player_play],
                 contentColor,
                 GlanceModifier.clickable {
                     withController(context) { if (it.isPlaying) it.pause() else it.play() }
@@ -467,7 +465,7 @@ class MainAppWidget : GlanceAppWidget() {
         } else {
             Box {
                 Image(
-                    ImageProvider(org.sunsetware.phocid.R.drawable.widget_artwork_placeholder_background),
+                    ImageProvider(R.drawable.widget_artwork_placeholder_background),
                     null,
                     contentScale = ContentScale.Fit,
                     colorFilter =
@@ -481,7 +479,7 @@ class MainAppWidget : GlanceAppWidget() {
                     modifier = modifier,
                 )
                 Image(
-                    ImageProvider(org.sunsetware.phocid.R.drawable.widget_artwork_placeholder_foreground),
+                    ImageProvider(R.drawable.widget_artwork_placeholder_foreground),
                     null,
                     contentScale = ContentScale.Fit,
                     colorFilter =

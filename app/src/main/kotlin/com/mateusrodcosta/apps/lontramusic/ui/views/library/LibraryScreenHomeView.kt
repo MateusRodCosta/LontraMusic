@@ -54,6 +54,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.media3.common.MediaMetadata
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.data.Album
 import com.mateusrodcosta.apps.lontramusic.data.AlbumArtist
 import com.mateusrodcosta.apps.lontramusic.data.Artist
@@ -99,8 +100,6 @@ import com.mateusrodcosta.apps.lontramusic.ui.views.trackMenuItemsLibrary
 import com.mateusrodcosta.apps.lontramusic.utils.coerceInOrMin
 import com.mateusrodcosta.apps.lontramusic.utils.combine
 import java.util.UUID
-import kotlin.collections.get
-import kotlin.collections.plus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -110,7 +109,6 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
-import org.sunsetware.phocid.R
 
 @Immutable
 data class LibraryScreenHomeViewItem(

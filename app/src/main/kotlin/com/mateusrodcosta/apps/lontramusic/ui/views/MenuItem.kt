@@ -20,6 +20,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.core.content.pm.ShortcutManagerCompat
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.UiManager
 import com.mateusrodcosta.apps.lontramusic.data.PlayerManager
 import com.mateusrodcosta.apps.lontramusic.data.SpecialPlaylistLookup
@@ -38,7 +39,6 @@ import com.mateusrodcosta.apps.lontramusic.ui.views.playlist.RemoveFromPlaylistD
 import com.mateusrodcosta.apps.lontramusic.ui.views.playlist.RenamePlaylistDialog
 import com.mateusrodcosta.apps.lontramusic.utils.icuFormat
 import java.util.UUID
-import org.sunsetware.phocid.R
 
 @Immutable
 sealed class MenuItem {

@@ -6,11 +6,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.mateusrodcosta.apps.lontramusic.Dialog
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.ui.components.DialogBase
 import com.mikepenz.aboutlibraries.ui.compose.android.produceLibraries
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
-import org.sunsetware.phocid.R
 
 class PreferencesThirdPartyLicensesDialog : Dialog() {
     @Composable

@@ -101,6 +101,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.media3.common.Player
 import com.mateusrodcosta.apps.lontramusic.DEFAULT_SWIPE_THRESHOLD
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.TNUM
 import com.mateusrodcosta.apps.lontramusic.data.ArtworkColorPreference
 import com.mateusrodcosta.apps.lontramusic.data.HighResArtworkPreference
@@ -145,14 +146,12 @@ import com.mateusrodcosta.apps.lontramusic.utils.icuFormat
 import com.mateusrodcosta.apps.lontramusic.utils.map
 import com.mateusrodcosta.apps.lontramusic.utils.roundToIntOrZero
 import com.mateusrodcosta.apps.lontramusic.utils.runningReduce
-import kotlin.collections.plus
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
-import org.sunsetware.phocid.R
 
 @Immutable
 interface LibraryScreenItem<T : LibraryScreenItem<T>> {

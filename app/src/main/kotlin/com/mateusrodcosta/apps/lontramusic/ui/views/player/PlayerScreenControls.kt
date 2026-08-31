@@ -44,6 +44,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.Player
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.TNUM
 import com.mateusrodcosta.apps.lontramusic.data.Track
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
@@ -63,7 +64,6 @@ import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
-import org.sunsetware.phocid.R
 
 @Immutable
 sealed class PlayerScreenControls {

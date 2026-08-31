@@ -11,10 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.UNKNOWN
 import com.mateusrodcosta.apps.lontramusic.data.SortingOption
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
-import org.sunsetware.phocid.R
 
 @Composable
 inline fun SortingOptionPicker(

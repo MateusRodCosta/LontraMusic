@@ -67,7 +67,6 @@ import com.mateusrodcosta.apps.lontramusic.utils.roundToIntOrZero
 import java.util.Locale
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.runBlocking
-import org.sunsetware.phocid.R
 
 class WidgetConfigureActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)

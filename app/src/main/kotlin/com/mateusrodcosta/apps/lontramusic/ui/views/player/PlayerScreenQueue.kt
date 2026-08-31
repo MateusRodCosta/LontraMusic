@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.view.HapticFeedbackConstantsCompat
 import androidx.core.view.ViewCompat
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.data.Track
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.globals.format
@@ -55,7 +56,6 @@ import com.mateusrodcosta.apps.lontramusic.ui.views.MenuItem
 import com.mateusrodcosta.apps.lontramusic.utils.icuFormat
 import com.mateusrodcosta.apps.lontramusic.utils.sumOfDuration
 import com.mateusrodcosta.apps.lontramusic.utils.toLocalizedString
-import org.sunsetware.phocid.R
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyListState
 

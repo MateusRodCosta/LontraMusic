@@ -11,7 +11,7 @@ plugins {
 }
 
 android {
-    namespace = "org.sunsetware.phocid"
+    namespace = "com.mateusrodcosta.apps.lontramusic"
     compileSdk {
         version = release(37) {
             minorApiLevel = 1

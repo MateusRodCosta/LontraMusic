@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mateusrodcosta.apps.lontramusic.Dialog
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.data.UnfilteredTrackIndex
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.ui.components.DialogBase
@@ -43,7 +44,6 @@ import com.mateusrodcosta.apps.lontramusic.ui.components.UtilityListItem
 import com.mateusrodcosta.apps.lontramusic.ui.theme.Typography
 import com.mateusrodcosta.apps.lontramusic.utils.icuFormat
 import com.mateusrodcosta.apps.lontramusic.utils.removeAt
-import org.sunsetware.phocid.R
 
 @Stable
 class PreferencesBlacklistDialog(private val initialTextFieldValue: String = "") : Dialog() {

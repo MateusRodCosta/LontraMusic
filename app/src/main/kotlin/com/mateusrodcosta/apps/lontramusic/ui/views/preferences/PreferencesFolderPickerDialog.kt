@@ -28,6 +28,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.mateusrodcosta.apps.lontramusic.Dialog
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.ui.components.DialogBase
 import com.mateusrodcosta.apps.lontramusic.ui.components.EmptyListIndicator
@@ -35,7 +36,6 @@ import com.mateusrodcosta.apps.lontramusic.ui.components.SingleLineText
 import com.mateusrodcosta.apps.lontramusic.ui.components.UtilityListItem
 import com.mateusrodcosta.apps.lontramusic.ui.theme.Typography
 import org.apache.commons.io.FilenameUtils
-import org.sunsetware.phocid.R
 
 @Stable
 class PreferencesFolderPickerDialog(

@@ -36,6 +36,7 @@ import androidx.lifecycle.application
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.UiManager
 import com.mateusrodcosta.apps.lontramusic.data.Album
 import com.mateusrodcosta.apps.lontramusic.data.AlbumArtist
@@ -92,7 +93,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.update
 import kotlinx.serialization.Serializable
-import org.sunsetware.phocid.R
 
 @Immutable
 sealed class LibraryScreenCollectionViewItemInfo :

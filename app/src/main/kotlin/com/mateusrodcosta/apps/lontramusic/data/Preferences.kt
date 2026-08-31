@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 import com.ibm.icu.text.Collator
 import com.ibm.icu.text.RuleBasedCollator
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.globals.SystemLocale
 import com.mateusrodcosta.apps.lontramusic.service.NotificationButton
 import com.mateusrodcosta.apps.lontramusic.ui.theme.GRAY
@@ -26,7 +27,6 @@ import java.util.UUID
 import kotlin.math.PI
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
-import org.sunsetware.phocid.R
 
 /**
  * Changes to this class should not change types of existing members, and new members must have a

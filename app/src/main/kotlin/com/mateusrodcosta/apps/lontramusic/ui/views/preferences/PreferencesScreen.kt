@@ -113,7 +113,9 @@ import com.ibm.icu.text.Collator
 import com.ibm.icu.text.ListFormatter
 import com.ibm.icu.text.SimpleDateFormat
 import com.ibm.icu.util.MeasureUnit
+import com.mateusrodcosta.apps.lontramusic.BuildConfig
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.TopLevelScreen
 import com.mateusrodcosta.apps.lontramusic.UiManager
 import com.mateusrodcosta.apps.lontramusic.data.ArtworkColorPreference
@@ -153,8 +155,6 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
 import kotlinx.serialization.json.encodeToStream
 import org.apache.commons.io.FilenameUtils
-import org.sunsetware.phocid.BuildConfig
-import org.sunsetware.phocid.R
 
 @Stable
 object PreferencesScreen : TopLevelScreen() {

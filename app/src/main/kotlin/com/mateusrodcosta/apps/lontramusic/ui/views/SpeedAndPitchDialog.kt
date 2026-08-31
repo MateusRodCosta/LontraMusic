@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mateusrodcosta.apps.lontramusic.Dialog
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.ui.components.DialogBase
 import com.mateusrodcosta.apps.lontramusic.ui.components.SteppedSliderWithNumber
@@ -26,7 +27,6 @@ import com.mateusrodcosta.apps.lontramusic.utils.icuFormat
 import com.mateusrodcosta.apps.lontramusic.utils.roundToIntOrZero
 import kotlin.math.log
 import kotlin.math.pow
-import org.sunsetware.phocid.R
 
 @Stable
 class SpeedAndPitchDialog() : Dialog() {

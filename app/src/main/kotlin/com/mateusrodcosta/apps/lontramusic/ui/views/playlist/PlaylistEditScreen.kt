@@ -45,6 +45,7 @@ import androidx.core.view.ViewCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mateusrodcosta.apps.lontramusic.Dialog
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.TopLevelScreen
 import com.mateusrodcosta.apps.lontramusic.UNKNOWN
 import com.mateusrodcosta.apps.lontramusic.data.InvalidTrack
@@ -68,7 +69,6 @@ import java.util.UUID
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import org.apache.commons.io.FilenameUtils
-import org.sunsetware.phocid.R
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyListState
 

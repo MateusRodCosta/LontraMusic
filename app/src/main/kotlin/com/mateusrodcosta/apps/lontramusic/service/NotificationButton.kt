@@ -11,8 +11,8 @@ import androidx.media3.session.SessionCommand
 import com.mateusrodcosta.apps.lontramusic.EXTERNAL_FAVORITE_COMMAND
 import com.mateusrodcosta.apps.lontramusic.EXTERNAL_REPEAT_COMMAND
 import com.mateusrodcosta.apps.lontramusic.EXTERNAL_SHUFFLE_COMMAND
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
-import org.sunsetware.phocid.R
 
 enum class NotificationButton(
     val stringId: Int,

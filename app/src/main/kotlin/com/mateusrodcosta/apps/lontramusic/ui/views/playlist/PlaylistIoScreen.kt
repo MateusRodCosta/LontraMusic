@@ -67,6 +67,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.media3.common.MimeTypes
 import com.ibm.icu.text.Collator
 import com.mateusrodcosta.apps.lontramusic.MainViewModel
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.TopLevelScreen
 import com.mateusrodcosta.apps.lontramusic.UNKNOWN
 import com.mateusrodcosta.apps.lontramusic.data.Preferences
@@ -91,7 +92,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
 import org.apache.commons.io.FilenameUtils
-import org.sunsetware.phocid.R
 
 @Stable
 class PlaylistIoScreen

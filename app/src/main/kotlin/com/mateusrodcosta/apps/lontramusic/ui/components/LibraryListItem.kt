@@ -41,6 +41,7 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.ui.theme.AnimatedContentEnter
 import com.mateusrodcosta.apps.lontramusic.ui.theme.AnimatedContentExit
@@ -49,7 +50,6 @@ import com.mateusrodcosta.apps.lontramusic.ui.theme.Typography
 import com.mateusrodcosta.apps.lontramusic.ui.theme.contentColor
 import com.mateusrodcosta.apps.lontramusic.ui.theme.contentColorVariant
 import com.mateusrodcosta.apps.lontramusic.ui.theme.emphasizedStandard
-import org.sunsetware.phocid.R
 
 @Composable
 inline fun LibraryListItemHorizontal(
