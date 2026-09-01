@@ -10,10 +10,16 @@ import androidx.media3.common.util.BitmapLoader
 import androidx.media3.common.util.UnstableApi
 import coil3.SingletonImageLoader
 import coil3.request.ImageRequest
+import coil3.request.allowHardware
 import coil3.toBitmap
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
+import com.mateusrodcosta.apps.lontramusic.FILE_PATH_KEY
 import com.mateusrodcosta.apps.lontramusic.URI_KEY
+import com.mateusrodcosta.apps.lontramusic.data.ArtworkModel
+import com.mateusrodcosta.apps.lontramusic.data.ArtworkSourceType
+import com.mateusrodcosta.apps.lontramusic.data.ArtworkType
+import com.mateusrodcosta.apps.lontramusic.data.resolveArtworkSource
 import com.mateusrodcosta.apps.lontramusic.globals.GlobalData
 import java.util.concurrent.Executors
 import kotlinx.coroutines.runBlocking
@@ -30,8 +36,10 @@ class CustomizedBitmapLoader(private val context: Context) : BitmapLoader {
             runBlocking {
                 val request = ImageRequest.Builder(context)
                     .data(data)
+                    .size(512, 512)
+                    .allowHardware(false)
                     .build()
-                imageLoader.execute(request).image!!.toBitmap()
+                imageLoader.execute(request).image?.toBitmap() ?: throw Exception("Failed to decode bitmap")
             }
         }
     }
@@ -41,24 +49,60 @@ class CustomizedBitmapLoader(private val context: Context) : BitmapLoader {
             runBlocking {
                 val request = ImageRequest.Builder(context)
                     .data(uri)
+                    .size(512, 512)
+                    .allowHardware(false)
                     .build()
-                imageLoader.execute(request).image!!.toBitmap()
+                imageLoader.execute(request).image?.toBitmap() ?: throw Exception("Failed to load bitmap from uri: $uri")
             }
         }
     }
 
     override fun loadBitmapFromMetadata(metadata: MediaMetadata): ListenableFuture<Bitmap>? {
         val uri = metadata.extras?.getString(URI_KEY)?.toUri() ?: return null
+        val path = metadata.extras?.getString(FILE_PATH_KEY)
 
         return listeningExecutorService.submit<Bitmap> {
             runBlocking {
                 val id = try { ContentUris.parseId(uri) } catch (_: Exception) { -1L }
                 val track = if (id != -1L) GlobalData.libraryIndex.value.tracks[id] else null
 
+                val model: Any = if (track != null && track.hasArtwork) {
+                    ArtworkModel(
+                        type = track.artworkType,
+                        source = track.artworkSourcePath,
+                        hash = track.artworkHash,
+                        id = track.id,
+                        path = track.path
+                    )
+                } else if (path != null) {
+                    // Fallback discovery if index is not ready
+                    val resolved = resolveArtworkSource(path, uri)
+                    if (resolved != null) {
+                        ArtworkModel(
+                            type = when (resolved.type) {
+                                ArtworkSourceType.EMBEDDED -> ArtworkType.EMBEDDED
+                                ArtworkSourceType.EXTERNAL -> ArtworkType.EXTERNAL
+                                ArtworkSourceType.MEDIA_STORE -> ArtworkType.MEDIA_STORE
+                            },
+                            source = resolved.source,
+                            hash = null,
+                            id = id,
+                            path = path
+                        )
+                    } else {
+                        uri
+                    }
+                } else {
+                    uri
+                }
+
                 val request = ImageRequest.Builder(context)
-                    .data(track ?: uri)
+                    .data(model)
+                    .size(512, 512)
+                    .allowHardware(false)
                     .build()
-                imageLoader.execute(request).image!!.toBitmap()
+                
+                imageLoader.execute(request).image?.toBitmap() ?: throw Exception("No artwork found")
             }
         }
     }
