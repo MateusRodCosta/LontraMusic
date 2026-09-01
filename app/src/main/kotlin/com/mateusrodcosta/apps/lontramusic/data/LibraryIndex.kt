@@ -34,6 +34,7 @@ import com.mateusrodcosta.apps.lontramusic.utils.modeOrNull
 import com.mateusrodcosta.apps.lontramusic.utils.trimAndNormalize
 import java.io.File
 import java.io.FileInputStream
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
@@ -69,6 +70,14 @@ import org.sunsetware.omio.VORBIS_COMMENT_UNOFFICIAL_LYRICS
 import org.sunsetware.omio.VORBIS_COMMENT_UNOFFICIAL_YEAR
 import org.sunsetware.omio.readOpusMetadata
 
+@Serializable
+enum class ArtworkType {
+    EMBEDDED,
+    EXTERNAL,
+    MEDIA_STORE,
+    NONE,
+}
+
 @Immutable
 @Serializable
 data class Track(
@@ -94,11 +103,13 @@ data class Track(
     val bitRate: Long,
     val bitDepth: Int,
     val hasArtwork: Boolean,
+    val artworkType: ArtworkType = ArtworkType.NONE,
+    val artworkSourcePath: String? = null,
+    val artworkHash: Long? = null,
     @Serializable(with = ColorSerializer::class) val vibrantColor: Color?,
     @Serializable(with = ColorSerializer::class) val mutedColor: Color?,
     val unsyncedLyrics: String?,
     val comment: String?,
-    val artworkHash: Long? = null,
 ) : Searchable, Sortable {
     @Suppress("DEPRECATION")
     fun upgrade(): Track {
@@ -354,6 +365,9 @@ val InvalidTrack =
         0,
         0,
         false,
+        ArtworkType.NONE,
+        null,
+        null,
         null,
         null,
         null,
@@ -1387,6 +1401,9 @@ suspend fun scanTracks(
                         unsyncedLyrics = null as String?,
                         comment = null as String?,
                         hasArtwork = false,
+                        artworkType = ArtworkType.NONE,
+                        artworkSourcePath = null,
+                        artworkHash = null,
                         vibrantColor = null,
                         mutedColor = null,
                     )
@@ -1414,6 +1431,9 @@ suspend fun scanTracks(
     )
     val progressCurrent = AtomicInteger(0)
     val progressTotal = crudeTracks.size
+
+    val paletteCache = ConcurrentHashMap<String, Pair<Color?, Color?>>()
+
     coroutineScope {
         val jobs =
             (0..<parallelism).map {
@@ -1434,6 +1454,7 @@ suspend fun scanTracks(
                                     genreSeparators,
                                     genreSeparatorExceptions,
                                     crudeTrack,
+                                    paletteCache,
                                 )
                         } catch (ex: Exception) {
                             Log.e("LontraMusic", "Error scanning track ${crudeTrack.path}", ex)
@@ -1481,6 +1502,7 @@ private fun scanTrack(
     genreSeparators: List<String>,
     genreSeparatorExceptions: List<String>,
     crudeTrack: Track,
+    paletteCache: MutableMap<String, Pair<Color?, Color?>>,
 ): Track {
     val id = crudeTrack.id
     val path = crudeTrack.path
@@ -1651,21 +1673,36 @@ private fun scanTrack(
     albumArtists = splitArtists(null, albumArtists, artistSeparators, artistSeparatorExceptions)
     genres = splitGenres(genres, genreSeparators, genreSeparatorExceptions)
 
-    val palette =
-        if (disableArtworkColorExtraction) null
-        else
-            loadArtwork(context, id, path, false, 64)
-                ?.let { Palette.from(it) }
-                ?.clearTargets()
-                ?.apply {
-                    addTarget(Target.VIBRANT)
-                    addTarget(Target.MUTED)
-                }
-                ?.generate()
-    val vibrantColor = palette?.getSwatchForTarget(Target.VIBRANT)?.rgb?.let { Color(it) }
-    val mutedColor = palette?.getSwatchForTarget(Target.MUTED)?.rgb?.let { Color(it) }
-
     val artworkHash = getEmbeddedArtworkHash(path)
+    val resolvedArtwork = resolveArtworkSource(path, crudeTrack.uri)
+
+    val cacheKey = when (resolvedArtwork?.type) {
+        ArtworkSourceType.EMBEDDED -> artworkHash?.let { "hash_$it" }
+        ArtworkSourceType.EXTERNAL -> resolvedArtwork.source // Folder path or file path
+        else -> null
+    }
+
+    val (vibrantColor, mutedColor) = if (disableArtworkColorExtraction || resolvedArtwork == null) {
+        null to null
+    } else if (cacheKey != null && paletteCache.containsKey(cacheKey)) {
+        paletteCache[cacheKey]!!
+    } else {
+        val palette = loadArtwork(context, id, path, false, 64)
+            ?.let { Palette.from(it) }
+            ?.clearTargets()
+            ?.apply {
+                addTarget(Target.VIBRANT)
+                addTarget(Target.MUTED)
+            }
+            ?.generate()
+        val vibrant = palette?.getSwatchForTarget(Target.VIBRANT)?.rgb?.let { Color(it) }
+        val muted = palette?.getSwatchForTarget(Target.MUTED)?.rgb?.let { Color(it) }
+        val result = vibrant to muted
+        if (cacheKey != null) {
+            paletteCache[cacheKey] = result
+        }
+        result
+    }
 
     return crudeTrack.copy(
         title = title,
@@ -1684,7 +1721,14 @@ private fun scanTrack(
         bitDepth = bitDepth,
         unsyncedLyrics = unsyncedLyrics,
         comment = comment,
-        hasArtwork = palette != null,
+        hasArtwork = resolvedArtwork != null,
+        artworkType = when (resolvedArtwork?.type) {
+            ArtworkSourceType.EMBEDDED -> ArtworkType.EMBEDDED
+            ArtworkSourceType.EXTERNAL -> ArtworkType.EXTERNAL
+            ArtworkSourceType.MEDIA_STORE -> ArtworkType.MEDIA_STORE
+            null -> ArtworkType.NONE
+        },
+        artworkSourcePath = resolvedArtwork?.source,
         vibrantColor = vibrantColor,
         mutedColor = mutedColor,
         artworkHash = artworkHash,

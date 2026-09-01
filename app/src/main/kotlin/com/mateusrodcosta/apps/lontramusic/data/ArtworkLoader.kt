@@ -52,6 +52,78 @@ private val imageMimeTypes =
 
 private val cachedScreenSize = AtomicInteger(0)
 
+enum class ArtworkSourceType {
+    EMBEDDED,
+    EXTERNAL,
+    MEDIA_STORE,
+}
+
+data class ResolvedArtwork(
+    val type: ArtworkSourceType,
+    val source: String,
+)
+
+fun resolveArtworkSource(
+    path: String?,
+    uri: Uri,
+): ResolvedArtwork? {
+    // 1. Check embedded (using library which is prioritized in loadArtwork)
+    if (path != null) {
+        val extension = FilenameUtils.getExtension(path).lowercase()
+        val hasEmbedded = try {
+            if (extension == "opus" || extension == "ogg") {
+                FileInputStream(File(path)).buffered().use { stream ->
+                    val metadata = readOpusMetadata(stream, false)
+                    metadata.userComments[VORBIS_COMMENT_METADATA_BLOCK_PICTURE]?.any { block ->
+                        decodeMetadataBlockPicture(block)?.let {
+                            imageMimeTypes.contains(it.mimeType.trimAndNormalize())
+                        } ?: false
+                    } ?: false
+                }
+            } else {
+                AudioFileIO.read(File(path)).tag.firstArtwork != null
+            }
+        } catch (_: Exception) {
+            false
+        }
+        if (hasEmbedded) return ResolvedArtwork(ArtworkSourceType.EMBEDDED, path)
+    }
+
+    // 2. Check external files
+    val externalFile = findExternalArtworkFile(path)
+    if (externalFile != null) return ResolvedArtwork(ArtworkSourceType.EXTERNAL, externalFile.absolutePath)
+
+    // 3. Fallback to MediaStore (we assume it might have it if the others don't)
+    return ResolvedArtwork(ArtworkSourceType.MEDIA_STORE, uri.toString())
+}
+
+private fun findExternalArtworkFile(path: String?): File? {
+    if (path == null) return null
+
+    val trackName = FilenameUtils.getBaseName(path)
+    val directoryName = FilenameUtils.getName(FilenameUtils.getPathNoEndSeparator(path))
+    val files = try {
+        File(FilenameUtils.getPath(path)).listFiles() ?: emptyArray()
+    } catch (_: Exception) {
+        emptyArray()
+    }
+
+    return files
+        .mapNotNull {
+            val name = it.nameWithoutExtension
+            val extension = it.extension
+            val extensionScore = imageFileExtensionScores[extension.lowercase()] ?: return@mapNotNull null
+            val nameScore = when {
+                name.equals(trackName, true) -> 999
+                name.equals(directoryName, true) -> 998
+                else -> imageFileNameScores[name.lowercase()] ?: return@mapNotNull null
+            }
+            it to (nameScore * 1000 + extensionScore)
+        }
+        .sortedByDescending { it.second }
+        .firstOrNull()?.first
+}
+
 fun loadArtwork(
     context: Context,
     uri: Uri,

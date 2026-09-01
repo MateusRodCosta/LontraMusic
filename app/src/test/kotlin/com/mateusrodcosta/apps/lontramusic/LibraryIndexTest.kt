@@ -249,6 +249,8 @@ class LibraryIndexTest {
             bitRate = bitRate,
             bitDepth = bitDepth,
             hasArtwork = hasArtwork,
+            artworkType = ArtworkType.NONE,
+            artworkSourcePath = null,
             vibrantColor = vibrantColor,
             mutedColor = mutedColor,
             dateAdded = dateAdded,
