@@ -104,7 +104,6 @@ import com.mateusrodcosta.apps.lontramusic.MainViewModel
 import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.TNUM
 import com.mateusrodcosta.apps.lontramusic.data.ArtworkColorPreference
-import com.mateusrodcosta.apps.lontramusic.data.HighResArtworkPreference
 import com.mateusrodcosta.apps.lontramusic.data.InvalidTrack
 import com.mateusrodcosta.apps.lontramusic.data.LibraryIndex
 import com.mateusrodcosta.apps.lontramusic.data.PlayerManager
@@ -113,7 +112,6 @@ import com.mateusrodcosta.apps.lontramusic.data.sorted
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 import com.mateusrodcosta.apps.lontramusic.ui.components.AnimatedForwardBackwardTransition
 import com.mateusrodcosta.apps.lontramusic.ui.components.Artwork
-import com.mateusrodcosta.apps.lontramusic.ui.components.ArtworkCache
 import com.mateusrodcosta.apps.lontramusic.ui.components.ArtworkImage
 import com.mateusrodcosta.apps.lontramusic.ui.components.BinaryDragState
 import com.mateusrodcosta.apps.lontramusic.ui.components.DragLock
@@ -360,9 +358,7 @@ fun LibraryScreen(
             BottomBar(
                 playerManager,
                 libraryIndex,
-                viewModel.carouselArtworkCache,
                 DEFAULT_SWIPE_THRESHOLD * preferences.swipeThresholdMultiplier,
-                preferences.highResArtworkPreference,
                 preferences.artworkColorPreference,
                 preferences.shapePreference.artworkShape,
                 uiManager.playerScreenDragState,
@@ -733,9 +729,7 @@ private fun CollectionSearchBar(
 private fun BottomBar(
     playerManager: PlayerManager,
     libraryIndex: LibraryIndex,
-    carouselArtworkCache: ArtworkCache,
     swipeThreshold: Dp,
-    highResArtworkPreference: HighResArtworkPreference,
     artworkColorPreference: ArtworkColorPreference,
     artworkShape: Shape,
     playerScreenDragState: BinaryDragState,
@@ -870,8 +864,6 @@ private fun BottomBar(
                                         artwork = Artwork.Track(track),
                                         artworkColorPreference = artworkColorPreference,
                                         shape = artworkShape,
-                                        highRes = highResArtworkPreference.player,
-                                        highResCache = carouselArtworkCache,
                                         modifier = Modifier.fillMaxSize(),
                                     )
                                 },

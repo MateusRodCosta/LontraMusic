@@ -101,6 +101,36 @@ fun loadArtwork(
     )
 }
 
+fun getEmbeddedArtworkHash(path: String?): Long? {
+    return try {
+        requireNotNull(path)
+        val extension = FilenameUtils.getExtension(path).lowercase()
+        val data =
+            if (extension == "opus" || extension == "ogg") {
+                try {
+                    val metadata =
+                        FileInputStream(File(path)).buffered().use { stream ->
+                            readOpusMetadata(stream, false)
+                        }
+                    requireNotNull(metadata.userComments[VORBIS_COMMENT_METADATA_BLOCK_PICTURE])
+                        .firstNotNullOf { block ->
+                            decodeMetadataBlockPicture(block)?.takeIf {
+                                imageMimeTypes.contains(it.mimeType.trimAndNormalize())
+                            }
+                        }
+                        .data
+                } catch (_: Exception) {
+                    AudioFileIO.read(File(path)).tag.firstArtwork.binaryData
+                }
+            } else {
+                AudioFileIO.read(File(path)).tag.firstArtwork.binaryData
+            }
+        data.contentHashCode().toLong()
+    } catch (_: Exception) {
+        null
+    }
+}
+
 private fun loadWithLibrary(path: String?, sizeLimit: Int?, crop: Boolean): Bitmap? {
     return try {
         requireNotNull(path)

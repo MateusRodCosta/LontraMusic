@@ -15,11 +15,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.Player
 import com.mateusrodcosta.apps.lontramusic.data.ArtworkColorPreference
-import com.mateusrodcosta.apps.lontramusic.data.HighResArtworkPreference
 import com.mateusrodcosta.apps.lontramusic.data.PlayerState
 import com.mateusrodcosta.apps.lontramusic.data.Track
 import com.mateusrodcosta.apps.lontramusic.ui.components.Artwork
-import com.mateusrodcosta.apps.lontramusic.ui.components.ArtworkCache
 import com.mateusrodcosta.apps.lontramusic.ui.components.ArtworkImage
 import com.mateusrodcosta.apps.lontramusic.ui.components.BinaryDragState
 import com.mateusrodcosta.apps.lontramusic.ui.components.DragLock
@@ -30,9 +28,7 @@ sealed class PlayerScreenArtwork {
     @Composable
     abstract fun Compose(
         playerTransientStateVersion: Long,
-        carouselArtworkCache: ArtworkCache,
         swipeThreshold: Dp,
-        highResArtworkPreference: HighResArtworkPreference,
         artworkColorPreference: ArtworkColorPreference,
         playerState: PlayerState,
         playerScreenDragState: BinaryDragState,
@@ -49,9 +45,7 @@ object PlayerScreenArtworkDefault : PlayerScreenArtwork() {
     @Composable
     override fun Compose(
         playerTransientStateVersion: Long,
-        carouselArtworkCache: ArtworkCache,
         swipeThreshold: Dp,
-        highResArtworkPreference: HighResArtworkPreference,
         artworkColorPreference: ArtworkColorPreference,
         playerState: PlayerState,
         playerScreenDragState: BinaryDragState,
@@ -93,8 +87,6 @@ object PlayerScreenArtworkDefault : PlayerScreenArtwork() {
                     shape = RoundedCornerShape(0.dp),
                     modifier =
                         Modifier.aspectRatio(1f, matchHeightConstraintsFirst = true).fillMaxSize(),
-                    highRes = highResArtworkPreference.player,
-                    highResCache = carouselArtworkCache,
                 )
             }
         }

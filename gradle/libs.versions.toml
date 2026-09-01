@@ -25,6 +25,7 @@ reorderable = "3.1.0"
 robolectric = "4.16.1"
 jaudiotagger = "3.0.1"
 aboutLibraries = "15.1.1"
+coil = "3.6.1"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
@@ -64,6 +65,7 @@ robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectr
 aboutlibraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "aboutLibraries" }
 aboutlibraries-compose-core = { module = "com.mikepenz:aboutlibraries-compose-core", version.ref = "aboutLibraries" }
 aboutlibraries-compose-m3 = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
+coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 
 [plugins]
 dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }

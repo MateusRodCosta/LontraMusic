@@ -226,6 +226,7 @@ class LibraryIndexTest {
         mutedColor: Color? = InvalidTrack.mutedColor,
         unsyncedLyrics: String? = InvalidTrack.unsyncedLyrics,
         comment: String? = InvalidTrack.comment,
+        artworkHash: Long? = InvalidTrack.artworkHash,
     ): Track {
         return Track(
             id = id,
@@ -253,6 +254,7 @@ class LibraryIndexTest {
             dateAdded = dateAdded,
             unsyncedLyrics = unsyncedLyrics,
             comment = comment,
+            artworkHash = artworkHash,
         )
     }
 

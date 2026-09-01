@@ -25,7 +25,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.ExperimentalSerializationApi
-import com.mateusrodcosta.apps.lontramusic.ui.components.ArtworkCache
 
 class MainViewModel(private val application: Application) : AndroidViewModel(application) {
     private val _initialized = MutableStateFlow(false)
@@ -49,7 +48,6 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
         get() = GlobalData.playlistManager
 
     val lyricsCache = AtomicReference(null as Pair<Long, Lyrics>?)
-    val carouselArtworkCache = ArtworkCache(viewModelScope, 4)
     val playlistIoDirectory = MutableStateFlow(null as Uri?)
     private val _libraryScanState = MutableStateFlow(null as Boolean?)
     /**

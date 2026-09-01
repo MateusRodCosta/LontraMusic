@@ -61,7 +61,6 @@ import com.mateusrodcosta.apps.lontramusic.data.Artist
 import com.mateusrodcosta.apps.lontramusic.data.ArtworkColorPreference
 import com.mateusrodcosta.apps.lontramusic.data.Folder
 import com.mateusrodcosta.apps.lontramusic.data.Genre
-import com.mateusrodcosta.apps.lontramusic.data.HighResArtworkPreference
 import com.mateusrodcosta.apps.lontramusic.data.InvalidTrack
 import com.mateusrodcosta.apps.lontramusic.data.LibraryIndex
 import com.mateusrodcosta.apps.lontramusic.data.PlaylistManager
@@ -580,7 +579,6 @@ fun LibraryScreenHomeView(
                         gridSize = tab.gridSize,
                         items = items,
                         multiSelectManager = multiSelectState,
-                        highResArtworkPreference = preferences.highResArtworkPreference,
                         artworkColorPreference = preferences.artworkColorPreference,
                         artworkShape = preferences.shapePreference.artworkShape,
                         cardShape = preferences.shapePreference.cardShape,
@@ -689,7 +687,6 @@ private fun LibraryList(
     gridSize: Int,
     items: SelectableList<LibraryScreenHomeViewItem>,
     multiSelectManager: MultiSelectManager,
-    highResArtworkPreference: HighResArtworkPreference,
     artworkColorPreference: ArtworkColorPreference,
     artworkShape: Shape,
     cardShape: Shape,
@@ -719,7 +716,6 @@ private fun LibraryList(
                                     artwork = artwork,
                                     artworkColorPreference = artworkColorPreference,
                                     shape = artworkShape,
-                                    highRes = highResArtworkPreference.small,
                                     modifier = Modifier.fillMaxSize(),
                                 )
                             },
@@ -764,7 +760,6 @@ private fun LibraryList(
                                     artwork = artwork,
                                     artworkColorPreference = artworkColorPreference,
                                     shape = RoundedCornerShape(0.dp),
-                                    highRes = highResArtworkPreference.library,
                                     modifier = Modifier.fillMaxSize(),
                                 )
                             },

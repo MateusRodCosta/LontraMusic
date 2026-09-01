@@ -5,11 +5,16 @@ import android.os.Build
 import android.util.Log
 import android.widget.Toast
 import androidx.glance.appwidget.updateAll
+import coil3.ImageLoader
+import coil3.PlatformContext
+import coil3.SingletonImageLoader
 import com.mateusrodcosta.apps.lontramusic.data.LibraryIndex
 import com.mateusrodcosta.apps.lontramusic.data.PlayerState
 import com.mateusrodcosta.apps.lontramusic.data.PlaylistManager
 import com.mateusrodcosta.apps.lontramusic.data.Preferences
 import com.mateusrodcosta.apps.lontramusic.data.SaveManager
+import com.mateusrodcosta.apps.lontramusic.data.TrackFetcher
+import com.mateusrodcosta.apps.lontramusic.data.TrackKeyer
 import com.mateusrodcosta.apps.lontramusic.data.UnfilteredTrackIndex
 import com.mateusrodcosta.apps.lontramusic.data.loadCbor
 import com.mateusrodcosta.apps.lontramusic.globals.GlobalData
@@ -28,11 +33,20 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-class MainApplication : Application() {
+class MainApplication : Application(), SingletonImageLoader.Factory {
     private val mainScope = MainScope()
     private val defaultScope = CoroutineScope(mainScope.coroutineContext + Dispatchers.Default)
     private val ioScope = CoroutineScope(mainScope.coroutineContext + Dispatchers.IO)
     private val saveManagers = mutableListOf<SaveManager<*>>()
+
+    override fun newImageLoader(context: PlatformContext): ImageLoader {
+        return ImageLoader.Builder(context)
+            .components {
+                add(TrackFetcher.Factory())
+                add(TrackKeyer())
+            }
+            .build()
+    }
 
     override fun onCreate() {
         super.onCreate()

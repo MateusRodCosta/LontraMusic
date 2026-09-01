@@ -98,6 +98,7 @@ data class Track(
     @Serializable(with = ColorSerializer::class) val mutedColor: Color?,
     val unsyncedLyrics: String?,
     val comment: String?,
+    val artworkHash: Long? = null,
 ) : Searchable, Sortable {
     @Suppress("DEPRECATION")
     fun upgrade(): Track {
@@ -1664,6 +1665,8 @@ private fun scanTrack(
     val vibrantColor = palette?.getSwatchForTarget(Target.VIBRANT)?.rgb?.let { Color(it) }
     val mutedColor = palette?.getSwatchForTarget(Target.MUTED)?.rgb?.let { Color(it) }
 
+    val artworkHash = getEmbeddedArtworkHash(path)
+
     return crudeTrack.copy(
         title = title,
         artists = artists,
@@ -1684,6 +1687,7 @@ private fun scanTrack(
         hasArtwork = palette != null,
         vibrantColor = vibrantColor,
         mutedColor = mutedColor,
+        artworkHash = artworkHash,
     )
 }
 
