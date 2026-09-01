@@ -865,6 +865,7 @@ private fun BottomBar(
                                         artworkColorPreference = artworkColorPreference,
                                         shape = artworkShape,
                                         modifier = Modifier.fillMaxSize(),
+                                        sticky = true,
                                     )
                                 },
                                 actions = {},

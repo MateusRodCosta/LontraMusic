@@ -87,6 +87,7 @@ object PlayerScreenArtworkDefault : PlayerScreenArtwork() {
                     shape = RoundedCornerShape(0.dp),
                     modifier =
                         Modifier.aspectRatio(1f, matchHeightConstraintsFirst = true).fillMaxSize(),
+                    sticky = true,
                 )
             }
         }

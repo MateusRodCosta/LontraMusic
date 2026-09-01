@@ -8,6 +8,7 @@ import androidx.glance.appwidget.updateAll
 import coil3.ImageLoader
 import coil3.PlatformContext
 import coil3.SingletonImageLoader
+import coil3.request.crossfade
 import com.mateusrodcosta.apps.lontramusic.data.LibraryIndex
 import com.mateusrodcosta.apps.lontramusic.data.PlayerState
 import com.mateusrodcosta.apps.lontramusic.data.PlaylistManager
@@ -45,6 +46,7 @@ class MainApplication : Application(), SingletonImageLoader.Factory {
                 add(TrackFetcher.Factory())
                 add(TrackKeyer())
             }
+            .crossfade(150)
             .build()
     }
 

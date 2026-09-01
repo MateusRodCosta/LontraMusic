@@ -1,5 +1,6 @@
 package com.mateusrodcosta.apps.lontramusic.data
 
+import androidx.compose.runtime.Immutable
 import androidx.core.net.toUri
 import coil3.ImageLoader
 import coil3.asImage
@@ -12,8 +13,42 @@ import coil3.request.Options
 import coil3.size.pxOrElse
 import java.io.File
 
+@Immutable
+data class ArtworkModel(
+    val type: ArtworkType,
+    val source: String?,
+    val hash: Long?,
+    val id: Long,
+    val path: String
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is ArtworkModel) return false
+        if (type != other.type) return false
+        if (type == ArtworkType.EXTERNAL || type == ArtworkType.MEDIA_STORE) {
+            return source == other.source
+        }
+        if (type == ArtworkType.EMBEDDED && hash != null && other.hash != null) {
+            return hash == other.hash
+        }
+        return id == other.id
+    }
+
+    override fun hashCode(): Int {
+        var result = type.hashCode()
+        if (type == ArtworkType.EXTERNAL || type == ArtworkType.MEDIA_STORE) {
+            result = 31 * result + (source?.hashCode() ?: 0)
+        } else if (type == ArtworkType.EMBEDDED && hash != null) {
+            result = 31 * result + hash.hashCode()
+        } else {
+            result = 31 * result + id.hashCode()
+        }
+        return result
+    }
+}
+
 class TrackFetcher(
-    private val data: Track,
+    private val data: ArtworkModel,
     private val options: Options,
     private val imageLoader: ImageLoader,
 ) : Fetcher {
@@ -22,16 +57,16 @@ class TrackFetcher(
         val context = options.context
 
         // 1. Direct Routing: If it's an external file, let Coil handle it natively
-        if (data.artworkType == ArtworkType.EXTERNAL && data.artworkSourcePath != null) {
-            val file = File(data.artworkSourcePath)
+        if (data.type == ArtworkType.EXTERNAL && data.source != null) {
+            val file = File(data.source)
             if (file.exists()) {
                 return imageLoader.components.newFetcher(file, options, imageLoader)?.first?.fetch()
             }
         }
 
         // 2. Direct Routing: If it's MediaStore, let Coil handle the Uri natively
-        if (data.artworkType == ArtworkType.MEDIA_STORE && data.artworkSourcePath != null) {
-            val uri = data.artworkSourcePath.toUri()
+        if (data.type == ArtworkType.MEDIA_STORE && data.source != null) {
+            val uri = data.source.toUri()
             return imageLoader.components.newFetcher(uri, options, imageLoader)?.first?.fetch()
         }
 
@@ -55,30 +90,23 @@ class TrackFetcher(
         )
     }
 
-    class Factory : Fetcher.Factory<Track> {
-        override fun create(data: Track, options: Options, imageLoader: ImageLoader): Fetcher {
+    class Factory : Fetcher.Factory<ArtworkModel> {
+        override fun create(data: ArtworkModel, options: Options, imageLoader: ImageLoader): Fetcher {
             return TrackFetcher(data, options, imageLoader)
         }
     }
 }
 
-class TrackKeyer : Keyer<Track> {
-    override fun key(data: Track, options: Options): String {
-        val folder = data.path.substringBeforeLast('/', "")
-        return if (data.hasArtwork) {
-            if (data.artworkHash != null) {
-                // Use the actual artwork hash for perfect de-duplication of identical embedded art
-                "embedded_${data.artworkHash}"
-            } else if (data.vibrantColor != null || data.mutedColor != null) {
-                // Fallback to palette signature if hash is missing (e.g. from an old index)
-                "embedded_${folder}_${data.album}_${data.vibrantColor?.value}_${data.mutedColor?.value}"
-            } else {
-                // Last resort: unique track key
-                "track_${data.id}_${data.version}"
+class TrackKeyer : Keyer<ArtworkModel> {
+    override fun key(data: ArtworkModel, options: Options): String {
+        return when (data.type) {
+            ArtworkType.EXTERNAL -> "folder_${data.source}"
+            ArtworkType.MEDIA_STORE -> "uri_${data.source}"
+            ArtworkType.EMBEDDED -> {
+                if (data.hash != null) "embedded_${data.hash}"
+                else "track_${data.id}"
             }
-        } else {
-            // No embedded art: use the folder path as the key
-            "folder_$folder"
+            ArtworkType.NONE -> "none"
         }
     }
 }

@@ -1432,7 +1432,7 @@ suspend fun scanTracks(
     val progressCurrent = AtomicInteger(0)
     val progressTotal = crudeTracks.size
 
-    val paletteCache = ConcurrentHashMap<String, Pair<Color?, Color?>>()
+    val scanCache = ScanCache()
 
     coroutineScope {
         val jobs =
@@ -1454,7 +1454,7 @@ suspend fun scanTracks(
                                     genreSeparators,
                                     genreSeparatorExceptions,
                                     crudeTrack,
-                                    paletteCache,
+                                    scanCache,
                                 )
                         } catch (ex: Exception) {
                             Log.e("LontraMusic", "Error scanning track ${crudeTrack.path}", ex)
@@ -1488,6 +1488,12 @@ private val yearRegexes =
         Regex("^.*?(?<year>[0-9]+).*?$"),
     )
 
+class ScanCache {
+    val palette = ConcurrentHashMap<String, Pair<Color?, Color?>>()
+    val artworkSource = ConcurrentHashMap<String, ResolvedArtwork?>()
+    val artworkHash = ConcurrentHashMap<String, Long?>()
+}
+
 /**
  * Issue #84: some systems might report incorrect durations, but Jaudiotagger only has second-level
  * precision and might be unreliable while OpusMetadataIo will take 100x time to read the duration,
@@ -1502,10 +1508,11 @@ private fun scanTrack(
     genreSeparators: List<String>,
     genreSeparatorExceptions: List<String>,
     crudeTrack: Track,
-    paletteCache: MutableMap<String, Pair<Color?, Color?>>,
+    scanCache: ScanCache,
 ): Track {
     val id = crudeTrack.id
     val path = crudeTrack.path
+    val folder = path.substringBeforeLast('/', "")
 
     var title = crudeTrack.title
     var artists = crudeTrack.artists
@@ -1673,19 +1680,27 @@ private fun scanTrack(
     albumArtists = splitArtists(null, albumArtists, artistSeparators, artistSeparatorExceptions)
     genres = splitGenres(genres, genreSeparators, genreSeparatorExceptions)
 
-    val artworkHash = getEmbeddedArtworkHash(path)
-    val resolvedArtwork = resolveArtworkSource(path, crudeTrack.uri)
+    val artworkHash = scanCache.artworkHash.getOrPut(path) { getEmbeddedArtworkHash(path) }
+    val resolvedArtwork = scanCache.artworkSource.getOrPut(folder) {
+        resolveArtworkSource(path, crudeTrack.uri)
+    }?.let { resolved ->
+        // If it was embedded, we must verify it's for THIS track, otherwise it might be 
+        // a different embedded art in the same folder.
+        if (resolved.type == ArtworkSourceType.EMBEDDED && resolved.source != path) {
+             resolveArtworkSource(path, crudeTrack.uri)
+        } else resolved
+    }
 
     val cacheKey = when (resolvedArtwork?.type) {
         ArtworkSourceType.EMBEDDED -> artworkHash?.let { "hash_$it" }
-        ArtworkSourceType.EXTERNAL -> resolvedArtwork.source // Folder path or file path
+        ArtworkSourceType.EXTERNAL -> resolvedArtwork.source
         else -> null
     }
 
     val (vibrantColor, mutedColor) = if (disableArtworkColorExtraction || resolvedArtwork == null) {
         null to null
-    } else if (cacheKey != null && paletteCache.containsKey(cacheKey)) {
-        paletteCache[cacheKey]!!
+    } else if (cacheKey != null && scanCache.palette.containsKey(cacheKey)) {
+        scanCache.palette[cacheKey]!!
     } else {
         val palette = loadArtwork(context, id, path, false, 64)
             ?.let { Palette.from(it) }
@@ -1699,7 +1714,7 @@ private fun scanTrack(
         val muted = palette?.getSwatchForTarget(Target.MUTED)?.rgb?.let { Color(it) }
         val result = vibrant to muted
         if (cacheKey != null) {
-            paletteCache[cacheKey] = result
+            scanCache.palette[cacheKey] = result
         }
         result
     }
