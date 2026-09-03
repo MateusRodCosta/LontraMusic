@@ -1,6 +1,5 @@
 package com.mateusrodcosta.apps.lontramusic.ui.theme
 
-import android.R
 import android.app.Activity
 import android.content.res.Configuration
 import android.os.Build
@@ -91,7 +90,7 @@ fun LontraMusicTheme(
 
                 ThemeColorSource.MATERIAL_YOU -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                        colorResource(R.color.system_accent1_400)
+                        colorResource(android.R.color.system_accent1_400)
                     } else {
                         primary400
                     }

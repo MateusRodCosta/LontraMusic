@@ -1,9 +1,7 @@
-@file:Suppress("OPT_IN_ARGUMENT_IS_NOT_MARKER")
-@file:OptIn(UnstableApi::class)
-
 package com.mateusrodcosta.apps.lontramusic.service
 
 import android.os.Bundle
+import androidx.annotation.OptIn
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.CommandButton
@@ -14,6 +12,7 @@ import com.mateusrodcosta.apps.lontramusic.EXTERNAL_SHUFFLE_COMMAND
 import com.mateusrodcosta.apps.lontramusic.R
 import com.mateusrodcosta.apps.lontramusic.globals.Strings
 
+@OptIn(UnstableApi::class)
 enum class NotificationButton(
     val stringId: Int,
     val build: (Player, currentTrackIsFavorite: Boolean) -> CommandButton,

@@ -3,6 +3,7 @@ package com.mateusrodcosta.apps.lontramusic
 import androidx.compose.ui.graphics.Color
 import com.ibm.icu.text.Collator
 import com.mateusrodcosta.apps.lontramusic.data.AlbumKey
+import com.mateusrodcosta.apps.lontramusic.data.ArtworkType
 import com.mateusrodcosta.apps.lontramusic.data.InvalidTrack
 import com.mateusrodcosta.apps.lontramusic.data.LibraryIndex
 import com.mateusrodcosta.apps.lontramusic.data.Track

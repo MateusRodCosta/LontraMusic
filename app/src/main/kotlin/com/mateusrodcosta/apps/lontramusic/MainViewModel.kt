@@ -84,7 +84,6 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
     override fun onCleared() {
         playerManager.close()
         uiManager.close()
-        super.onCleared()
     }
 
     @OptIn(ExperimentalSerializationApi::class)
