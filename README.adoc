@@ -2,11 +2,13 @@
 :note-caption: ℹ️
 :warning-caption: ⚠️
 
-image:metadata/en-US/images/phoneScreenshots/00-screenshot-home-tracks.png[Screenshot,15%]
-image:metadata/en-US/images/phoneScreenshots/01-screenshot-home-albums.png[Screenshot,15%]
-image:metadata/en-US/images/phoneScreenshots/02-screenshot-home-folders.png[Screenshot,15%]
-image:metadata/en-US/images/phoneScreenshots/03-screenshot-search.png[Screenshot,15%]
-image:metadata/en-US/images/phoneScreenshots/04-screenshot-player.png[Screenshot,15%]
+image:fastlane/metadata/android/en-US/images/icon.png[Icon,64px]
+
+image:fastlane/metadata/android/en-US/images/phoneScreenshots/1.png[Screenshot,15%]
+image:fastlane/metadata/android/en-US/images/phoneScreenshots/2.png[Screenshot,15%]
+image:fastlane/metadata/android/en-US/images/phoneScreenshots/3.png[Screenshot,15%]
+image:fastlane/metadata/android/en-US/images/phoneScreenshots/4.png[Screenshot,15%]
+image:fastlane/metadata/android/en-US/images/phoneScreenshots/5.png[Screenshot,15%]
 
 A modern offline music player with familiar designs for Android 11+.
 Lontra Music is a fork of https://github.com/TJYSunset/Phocid[Phocid].
@@ -41,9 +43,7 @@ Remember to clone the submodule with `git clone --recurse-submodules`.
 
 === App icon artwork
 
-....
-This work by tjysunset is licensed under CC BY-SA 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
-....
+Otter icon by https://icons8.com/[Icons8]
 
 === Code
 
