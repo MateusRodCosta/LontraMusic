@@ -1,0 +1,2 @@
+- First release after rebranding to Lontra Music
+- Many under-the-hood changes and performance improvements
